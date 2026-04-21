@@ -487,8 +487,45 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-positron" id="toc-why-positron" class="nav-link active" data-scroll-target="#why-positron"><span class="header-section-number">5.1</span> Why Positron?</a></li>
+  <li><a href="#the-bottom-panel-console-terminal-and-variables" id="toc-the-bottom-panel-console-terminal-and-variables" class="nav-link" data-scroll-target="#the-bottom-panel-console-terminal-and-variables"><span class="header-section-number">5.2</span> The Bottom Panel: Console, Terminal, and Variables</a>
+  <ul class="collapse">
+  <li><a href="#console-vs-terminal" id="toc-console-vs-terminal" class="nav-link" data-scroll-target="#console-vs-terminal"><span class="header-section-number">5.2.1</span> Console vs Terminal</a></li>
+  <li><a href="#managing-multiple-sessions" id="toc-managing-multiple-sessions" class="nav-link" data-scroll-target="#managing-multiple-sessions"><span class="header-section-number">5.2.2</span> Managing Multiple Sessions</a></li>
+  <li><a href="#the-variables-pane" id="toc-the-variables-pane" class="nav-link" data-scroll-target="#the-variables-pane"><span class="header-section-number">5.2.3</span> The Variables Pane</a></li>
+  </ul></li>
+  <li><a href="#the-data-viewer" id="toc-the-data-viewer" class="nav-link" data-scroll-target="#the-data-viewer"><span class="header-section-number">5.3</span> The Data Viewer</a></li>
+  <li><a href="#navigating-your-project" id="toc-navigating-your-project" class="nav-link" data-scroll-target="#navigating-your-project"><span class="header-section-number">5.4</span> Navigating Your Project</a>
+  <ul class="collapse">
+  <li><a href="#the-file-explorer-and-outline" id="toc-the-file-explorer-and-outline" class="nav-link" data-scroll-target="#the-file-explorer-and-outline"><span class="header-section-number">5.4.1</span> The File Explorer and Outline</a></li>
+  <li><a href="#opening-files-quickly" id="toc-opening-files-quickly" class="nav-link" data-scroll-target="#opening-files-quickly"><span class="header-section-number">5.4.2</span> Opening Files Quickly</a></li>
+  <li><a href="#working-with-multiple-files" id="toc-working-with-multiple-files" class="nav-link" data-scroll-target="#working-with-multiple-files"><span class="header-section-number">5.4.3</span> Working with Multiple Files</a></li>
+  </ul></li>
+  <li><a href="#search" id="toc-search" class="nav-link" data-scroll-target="#search"><span class="header-section-number">5.5</span> Search</a></li>
+  <li><a href="#the-command-palette" id="toc-the-command-palette" class="nav-link" data-scroll-target="#the-command-palette"><span class="header-section-number">5.6</span> The Command Palette</a></li>
+  <li><a href="#the-status-bar" id="toc-the-status-bar" class="nav-link" data-scroll-target="#the-status-bar"><span class="header-section-number">5.7</span> The Status Bar</a></li>
+  <li><a href="#essential-keyboard-shortcuts" id="toc-essential-keyboard-shortcuts" class="nav-link" data-scroll-target="#essential-keyboard-shortcuts"><span class="header-section-number">5.8</span> Essential Keyboard Shortcuts</a></li>
+  <li><a href="#working-with-r" id="toc-working-with-r" class="nav-link" data-scroll-target="#working-with-r"><span class="header-section-number">5.9</span> Working with R</a>
+  <ul class="collapse">
+  <li><a href="#starting-and-restarting-r" id="toc-starting-and-restarting-r" class="nav-link" data-scroll-target="#starting-and-restarting-r"><span class="header-section-number">5.9.1</span> Starting and Restarting R</a></li>
+  <li><a href="#setting-the-r-version" id="toc-setting-the-r-version" class="nav-link" data-scroll-target="#setting-the-r-version"><span class="header-section-number">5.9.2</span> Setting the R Version</a></li>
+  </ul></li>
+  <li><a href="#source-control-basics" id="toc-source-control-basics" class="nav-link" data-scroll-target="#source-control-basics"><span class="header-section-number">5.10</span> Source Control Basics</a></li>
+  <li><a href="#when-things-go-wrong" id="toc-when-things-go-wrong" class="nav-link" data-scroll-target="#when-things-go-wrong"><span class="header-section-number">5.11</span> When Things Go Wrong</a>
+  <ul class="collapse">
+  <li><a href="#a-panel-disappeared" id="toc-a-panel-disappeared" class="nav-link" data-scroll-target="#a-panel-disappeared"><span class="header-section-number">5.11.1</span> A Panel Disappeared</a></li>
+  <li><a href="#console-wont-start" id="toc-console-wont-start" class="nav-link" data-scroll-target="#console-wont-start"><span class="header-section-number">5.11.2</span> Console Won’t Start</a></li>
+  <li><a href="#wrong-r-version-running" id="toc-wrong-r-version-running" class="nav-link" data-scroll-target="#wrong-r-version-running"><span class="header-section-number">5.11.3</span> Wrong R Version Running</a></li>
+  <li><a href="#everything-feels-broken" id="toc-everything-feels-broken" class="nav-link" data-scroll-target="#everything-feels-broken"><span class="header-section-number">5.11.4</span> Everything Feels Broken</a></li>
+  </ul></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions"><span class="header-section-number">5.12</span> Extensions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -496,7 +533,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/positron.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Positron</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Positron</span></h1>
+<h1 class="title"><span id="sec-positron" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Positron</span></span></h1>
 </div>
 
 
@@ -513,21 +550,279 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>In <a href="../part1/first-project.html" class="quarto-xref"><span>Chapter 3</span></a>, you used Positron to set up a project, write code in the editor, and run it in the console. This chapter digs deeper into how Positron works and how to use it effectively for daily analysis work. We’ll cover what each panel does, how to navigate your project, and habits that make working smoother.</p>
+<p>Positron is our IDE (Integrated Development Environment) — it’s where you write code, explore data, run analyses, and manage projects. Built by Posit (the same team behind RStudio), Positron keeps the best RStudio-style data science features — the plotting pane, environment viewer, data viewer — while adding the best parts of VS Code, including Git integration and Claude Code.</p>
+<section id="why-positron" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="why-positron"><span class="header-section-number">5.1</span> Why Positron?</h2>
+<p>If you’ve used RStudio before, Positron will feel familiar. You still get an R console, a variable explorer, a data viewer, and a file browser. A few features that make it particularly useful for our work:</p>
+<p><strong>Full support for R and Python.</strong> Most of our work is in R (Seurat, DESeq2), but some tools require Python. In Positron, you can run R and Python sessions side by side, each with its own console and environment.</p>
+<p><strong>An excellent Data Viewer.</strong> Click any dataframe in the Variables pane and it opens in an interactive viewer where you can sort, filter, and search. For Seurat metadata tables, this is invaluable.</p>
+<p><strong>Claude Code integration.</strong> The Claude Code sidebar is built directly into Positron — you can ask for help, run lab skills, and get code reviewed right alongside your scripts.</p>
+</section>
+<section id="the-bottom-panel-console-terminal-and-variables" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-bottom-panel-console-terminal-and-variables"><span class="header-section-number">5.2</span> The Bottom Panel: Console, Terminal, and Variables</h2>
+<p>The bottom of the Positron window is where most interactive work happens. It contains tabs for your R console and terminal.</p>
+<section id="console-vs-terminal" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="console-vs-terminal"><span class="header-section-number">5.2.1</span> Console vs Terminal</h3>
+<p>These are the two most important tabs, and they do fundamentally different things.</p>
+<p>The <strong>Console</strong> is your R session. When you press <strong>Cmd+Enter</strong> (Mac) or <strong>Ctrl+Enter</strong> (Windows) to run a code chunk, it executes here. This is where you see R output, error messages, and package loading messages.</p>
+<p>The <strong>Terminal</strong> is a system shell — the same as Terminal.app on macOS or PowerShell on Windows, but built into Positron. Use it for shell commands: running <code>git</code>, rendering Quarto documents, or anything you’d normally do at the command line.</p>
+<p>The key distinction: <strong>R code goes in the Console, shell commands go in the Terminal.</strong> If Claude Code tells you to run <code>git add .</code>, that goes in the Terminal. If it tells you to run <code>library(Seurat)</code>, that goes in the Console.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mixing these up is a common early mistake. You’ll get <code>object not found</code> if you type a shell command into the R console, or <code>command not found</code> if you type R code into the terminal.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Windows Users (PowerShell terminal)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This chapter is coming soon.</p>
+<p>On Windows, Positron’s integrated terminal is PowerShell, not bash/zsh. Basic navigation commands work the same (<code>cd</code>, <code>ls</code>, <code>mkdir</code>), but some Unix-style commands used in this guide may differ. Key differences:</p>
+<ul>
+<li><strong>Directory listing</strong>: <code>ls</code> works but behaves slightly differently than on Mac</li>
+<li><strong>File paths</strong>: Use backslashes (<code>\</code>) in PowerShell, or forward slashes (<code>/</code>) which also work in most contexts</li>
+<li><strong>Conda activation</strong>: If <code>conda activate</code> doesn’t work, run <code>conda init powershell</code> in PowerShell first, then restart</li>
+</ul>
+<p>When in doubt, commands shown in this book work on both platforms unless otherwise noted.</p>
+</div>
+</div>
+</section>
+<section id="managing-multiple-sessions" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="managing-multiple-sessions"><span class="header-section-number">5.2.2</span> Managing Multiple Sessions</h3>
+<p>As you work, the bottom panel accumulates tabs — you might have an R console and one or two terminals open. Each appears as a labeled tab. Click a tab to switch to that session.</p>
+<p>Be careful with multiple R sessions: <strong>whichever console tab is visible is where Cmd+Enter (or Ctrl+Enter) sends your code.</strong> If you have two R sessions open and you’re looking at the wrong one, your code runs in a session that might not have the objects you expect.</p>
+</section>
+<section id="the-variables-pane" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="the-variables-pane"><span class="header-section-number">5.2.3</span> The Variables Pane</h3>
+<p>The Variables pane shows every object in your current R session — Seurat objects with their dimensions, dataframes with row and column counts, vectors, lists. Click any dataframe to open it in the Data Viewer. The pane updates in real time as you create, modify, or remove objects.</p>
+</section>
+</section>
+<section id="the-data-viewer" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="the-data-viewer"><span class="header-section-number">5.3</span> The Data Viewer</h2>
+<p>The Data Viewer is one of Positron’s most useful features for data analysis work. There are two ways to open it:</p>
+<ul>
+<li><strong>Click any dataframe</strong> in the Variables pane</li>
+<li><strong>Click a <code>.csv</code> or <code>.tsv</code> file</strong> in the File Explorer — Positron opens it directly in the viewer</li>
+</ul>
+<p>Once open, the Data Viewer lets you:</p>
+<ul>
+<li><strong>Sort</strong> by clicking column headers</li>
+<li><strong>Filter</strong> rows using the filter bar</li>
+<li><strong>Search</strong> for specific values across the table</li>
+<li><strong>See distributions</strong> via column histograms at the top of each numeric column</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Seurat Objects
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can’t view a Seurat object directly in the Data Viewer — it’s a complex nested structure. To inspect cell metadata, run <code>View(seu@meta.data)</code> in the console. This opens just the metadata table in the viewer.</p>
+</div>
+</div>
+<p>During exploratory analysis, keep the Data Viewer open constantly — check data after each transformation, look for unexpected values, verify that joins worked correctly.</p>
+</section>
+<section id="navigating-your-project" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="navigating-your-project"><span class="header-section-number">5.4</span> Navigating Your Project</h2>
+<section id="the-file-explorer-and-outline" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="the-file-explorer-and-outline"><span class="header-section-number">5.4.1</span> The File Explorer and Outline</h3>
+<p>The <strong>File Explorer</strong> in the left sidebar shows all files and folders in your project folder. Click files to open them — <code>.csv</code> and <code>.tsv</code> files open in the Data Viewer; code files open in the editor. Right-click to create, rename, or delete files.</p>
+<p>The <strong>Outline</strong> panel shows the structure of the current document — for <code>.Rmd</code> files, it lists headings and code chunks. Click any item to jump to that section. Once your scripts get longer, the Outline is essential for navigation.</p>
+</section>
+<section id="opening-files-quickly" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="opening-files-quickly"><span class="header-section-number">5.4.2</span> Opening Files Quickly</h3>
+<p>Press <strong>Cmd+P</strong> (Mac) or <strong>Ctrl+P</strong> (Windows) to open the Quick Open bar — start typing part of a filename and Positron shows matching files. Much faster than clicking through the File Explorer once your project has many files.</p>
+</section>
+<section id="working-with-multiple-files" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="working-with-multiple-files"><span class="header-section-number">5.4.3</span> Working with Multiple Files</h3>
+<p>Files open as tabs in the editor. Drag a tab to the right edge to split the view and see two files side by side — useful when reading one script’s outputs while writing code that depends on them.</p>
+</section>
+</section>
+<section id="search" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="search"><span class="header-section-number">5.5</span> Search</h2>
+<p>Press <strong>Cmd+Shift+F</strong> (Mac) or <strong>Ctrl+Shift+F</strong> (Windows) to search across every file in your project. Useful for finding where a function is defined, locating every use of a variable, or searching for a specific column name across all your scripts.</p>
+</section>
+<section id="the-command-palette" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="the-command-palette"><span class="header-section-number">5.6</span> The Command Palette</h2>
+<p>The Command Palette is Positron’s universal command search. Open it with <strong>Cmd+Shift+P</strong> (Mac) or <strong>Ctrl+Shift+P</strong> (Windows), then start typing what you want to do. It searches through every available command — switching R versions, changing settings, toggling panels.</p>
+<p>You’ll encounter it most often when Claude Code gives you instructions like “open the Command Palette and type ‘R: Select R Binary’.” Rather than memorizing where every setting lives in menus, you type what you’re looking for.</p>
+</section>
+<section id="the-status-bar" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="the-status-bar"><span class="header-section-number">5.7</span> The Status Bar</h2>
+<p>The status bar runs along the very bottom of the Positron window. It shows:</p>
+<ul>
+<li><strong>Active R version</strong> (e.g., “R 4.4.2”) — click to change</li>
+<li><strong>Current Git branch</strong> (e.g., “main”)</li>
+<li><strong>Line and column number</strong> for your cursor position</li>
+</ul>
+<p>When something isn’t working — packages seem missing, or code behaves unexpectedly — check the status bar first. It often reveals the problem: you’re running the wrong R version.</p>
+</section>
+<section id="essential-keyboard-shortcuts" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="essential-keyboard-shortcuts"><span class="header-section-number">5.8</span> Essential Keyboard Shortcuts</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>Mac</th>
+<th>Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run current line/selection</td>
+<td>Cmd+Enter</td>
+<td>Ctrl+Enter</td>
+</tr>
+<tr class="even">
+<td>Run current chunk</td>
+<td>Cmd+Shift+Enter</td>
+<td>Ctrl+Shift+Enter</td>
+</tr>
+<tr class="odd">
+<td>Open Command Palette</td>
+<td>Cmd+Shift+P</td>
+<td>Ctrl+Shift+P</td>
+</tr>
+<tr class="even">
+<td>Quick file open</td>
+<td>Cmd+P</td>
+<td>Ctrl+P</td>
+</tr>
+<tr class="odd">
+<td>Toggle terminal</td>
+<td>Cmd+`</td>
+<td>Ctrl+`</td>
+</tr>
+<tr class="even">
+<td>Save file</td>
+<td>Cmd+S</td>
+<td>Ctrl+S</td>
+</tr>
+<tr class="odd">
+<td>Project-wide search</td>
+<td>Cmd+Shift+F</td>
+<td>Ctrl+Shift+F</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cmd+Enter</strong> (or Ctrl+Enter) is the one you’ll use constantly. The <strong>Command Palette</strong> is how you access anything in Positron you’re not sure how to find.</p>
+</section>
+<section id="working-with-r" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="working-with-r"><span class="header-section-number">5.9</span> Working with R</h2>
+<section id="starting-and-restarting-r" class="level3" data-number="5.9.1">
+<h3 data-number="5.9.1" class="anchored" data-anchor-id="starting-and-restarting-r"><span class="header-section-number">5.9.1</span> Starting and Restarting R</h3>
+<p>An R session starts automatically when you run R code from an <code>.Rmd</code> file. If the project has renv set up, you’ll see a message like <code>Project loaded. [renv 1.0.0]</code> confirming project-specific packages are active.</p>
+<p><strong>Restarting R</strong> gives you a clean slate and is something you should do regularly. Click the restart icon (↻) in the Console toolbar, or press <strong>Cmd+Shift+0</strong> (Mac) / <strong>Ctrl+Shift+0</strong> (Windows).</p>
+<p>Why restart? During interactive development, your R session accumulates objects — some created by your script, some typed manually in the console while exploring. Over time it gets hard to tell what’s in your script versus what you created on the fly. Restarting clears everything and lets you test whether your script is truly self-contained.</p>
+<p>After restarting, run your script from the top. If it executes cleanly, your script has all the code it needs. If it fails with “object not found” errors, something is missing from the script.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Works interactively but fails on render?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a very common problem. You run chunks one by one and everything works, but when you render the document it fails. The cause is almost always an object you created manually in the console that isn’t in any chunk.</p>
+<p>To diagnose: restart R, then run all chunks from the top. Whatever fails is missing from your script.</p>
+</div>
+</div>
+</section>
+<section id="setting-the-r-version" class="level3" data-number="5.9.2">
+<h3 data-number="5.9.2" class="anchored" data-anchor-id="setting-the-r-version"><span class="header-section-number">5.9.2</span> Setting the R Version</h3>
+<p>If you need to change which R version Positron uses:</p>
+<ol type="1">
+<li>Open the Command Palette (<strong>Cmd+Shift+P</strong> / <strong>Ctrl+Shift+P</strong>)</li>
+<li>Type “R: Select R Binary”</li>
+<li>Choose the version you want</li>
+</ol>
+<p>This only needs to be done once per project — Positron remembers your choice.</p>
+</section>
+</section>
+<section id="source-control-basics" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="source-control-basics"><span class="header-section-number">5.10</span> Source Control Basics</h2>
+<p>The Source Control panel (click the branch icon in the left sidebar, or <strong>Cmd+Shift+G</strong> / <strong>Ctrl+Shift+G</strong>) shows which files have changed since your last commit.</p>
+<p>Basic workflow: 1. Make changes to your files 2. Open Source Control — review changed files 3. Stage files by clicking the <strong>+</strong> icon 4. Type a commit message 5. Click the checkmark to commit 6. Push via the three-dot menu (⋯) → Push</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>/done handles commits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you’re comfortable with the basics, the <code>/done</code> skill in Claude Code handles committing your work at the end of each session. But understanding the Source Control panel helps you verify that commits are correct.</p>
+</div>
+</div>
+<p>See <span class="quarto-unresolved-ref">?sec-git</span> for a full introduction to Git and GitHub.</p>
+</section>
+<section id="when-things-go-wrong" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="when-things-go-wrong"><span class="header-section-number">5.11</span> When Things Go Wrong</h2>
+<section id="a-panel-disappeared" class="level3" data-number="5.11.1">
+<h3 data-number="5.11.1" class="anchored" data-anchor-id="a-panel-disappeared"><span class="header-section-number">5.11.1</span> A Panel Disappeared</h3>
+<p>Go to the <strong>View</strong> menu and look for the panel you need — View → Terminal, View → Console, etc. Or use the Command Palette and type the panel name.</p>
+</section>
+<section id="console-wont-start" class="level3" data-number="5.11.2">
+<h3 data-number="5.11.2" class="anchored" data-anchor-id="console-wont-start"><span class="header-section-number">5.11.2</span> Console Won’t Start</h3>
+<p>Check the <strong>Output</strong> panel (View → Output) and select “R” from the dropdown — this shows diagnostic messages that often explain the actual error. Also check the status bar to verify the R path is correct. If all else fails, restart Positron.</p>
+</section>
+<section id="wrong-r-version-running" class="level3" data-number="5.11.3">
+<h3 data-number="5.11.3" class="anchored" data-anchor-id="wrong-r-version-running"><span class="header-section-number">5.11.3</span> Wrong R Version Running</h3>
+<p>Check the status bar at the bottom. If it’s wrong, use the Command Palette: “R: Select R Binary”.</p>
+</section>
+<section id="everything-feels-broken" class="level3" data-number="5.11.4">
+<h3 data-number="5.11.4" class="anchored" data-anchor-id="everything-feels-broken"><span class="header-section-number">5.11.4</span> Everything Feels Broken</h3>
+<p>Close Positron completely and reopen your project. This fixes most transient issues — stuck processes, stale caches, panels that won’t respond.</p>
+<p>On Windows, if Positron hangs on close, use Task Manager to end the process before reopening.</p>
+</section>
+</section>
+<section id="extensions" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="extensions"><span class="header-section-number">5.12</span> Extensions</h2>
+<p>Positron comes with most of what you need built in. A few extensions worth adding:</p>
+<ul>
+<li><strong>Quarto</strong> — for <code>.qmd</code> file support (may already be installed)</li>
+<li><strong>Jupyter</strong> — for Python notebook support</li>
+<li><strong>Claude Code</strong> — the AI coding assistant, if not already installed</li>
+</ul>
+<p>Install extensions through the Extensions panel (<strong>Cmd+Shift+X</strong> / <strong>Ctrl+Shift+X</strong>), search for the name, and click Install.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Start Minimal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Don’t install a dozen extensions on day one. Start with the essentials above and add more only when you encounter a specific need.</p>
 </div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

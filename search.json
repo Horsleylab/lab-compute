@@ -396,7 +396,128 @@
     "href": "part2/positron.html",
     "title": "5  Positron",
     "section": "",
-    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "text": "5.1 Why Positron?\nIn Chapter 3, you used Positron to set up a project, write code in the editor, and run it in the console. This chapter digs deeper into how Positron works and how to use it effectively for daily analysis work. We’ll cover what each panel does, how to navigate your project, and habits that make working smoother.\nPositron is our IDE (Integrated Development Environment) — it’s where you write code, explore data, run analyses, and manage projects. Built by Posit (the same team behind RStudio), Positron keeps the best RStudio-style data science features — the plotting pane, environment viewer, data viewer — while adding the best parts of VS Code, including Git integration and Claude Code.\nIf you’ve used RStudio before, Positron will feel familiar. You still get an R console, a variable explorer, a data viewer, and a file browser. A few features that make it particularly useful for our work:\nFull support for R and Python. Most of our work is in R (Seurat, DESeq2), but some tools require Python. In Positron, you can run R and Python sessions side by side, each with its own console and environment.\nAn excellent Data Viewer. Click any dataframe in the Variables pane and it opens in an interactive viewer where you can sort, filter, and search. For Seurat metadata tables, this is invaluable.\nClaude Code integration. The Claude Code sidebar is built directly into Positron — you can ask for help, run lab skills, and get code reviewed right alongside your scripts.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#the-bottom-panel-console-terminal-and-variables",
+    "href": "part2/positron.html#the-bottom-panel-console-terminal-and-variables",
+    "title": "5  Positron",
+    "section": "5.2 The Bottom Panel: Console, Terminal, and Variables",
+    "text": "5.2 The Bottom Panel: Console, Terminal, and Variables\nThe bottom of the Positron window is where most interactive work happens. It contains tabs for your R console and terminal.\n\n5.2.1 Console vs Terminal\nThese are the two most important tabs, and they do fundamentally different things.\nThe Console is your R session. When you press Cmd+Enter (Mac) or Ctrl+Enter (Windows) to run a code chunk, it executes here. This is where you see R output, error messages, and package loading messages.\nThe Terminal is a system shell — the same as Terminal.app on macOS or PowerShell on Windows, but built into Positron. Use it for shell commands: running git, rendering Quarto documents, or anything you’d normally do at the command line.\nThe key distinction: R code goes in the Console, shell commands go in the Terminal. If Claude Code tells you to run git add ., that goes in the Terminal. If it tells you to run library(Seurat), that goes in the Console.\n\n\n\n\n\n\nTip\n\n\n\nMixing these up is a common early mistake. You’ll get object not found if you type a shell command into the R console, or command not found if you type R code into the terminal.\n\n\n\n\n\n\n\n\nNoteWindows Users (PowerShell terminal)\n\n\n\nOn Windows, Positron’s integrated terminal is PowerShell, not bash/zsh. Basic navigation commands work the same (cd, ls, mkdir), but some Unix-style commands used in this guide may differ. Key differences:\n\nDirectory listing: ls works but behaves slightly differently than on Mac\nFile paths: Use backslashes (\\) in PowerShell, or forward slashes (/) which also work in most contexts\nConda activation: If conda activate doesn’t work, run conda init powershell in PowerShell first, then restart\n\nWhen in doubt, commands shown in this book work on both platforms unless otherwise noted.\n\n\n\n\n5.2.2 Managing Multiple Sessions\nAs you work, the bottom panel accumulates tabs — you might have an R console and one or two terminals open. Each appears as a labeled tab. Click a tab to switch to that session.\nBe careful with multiple R sessions: whichever console tab is visible is where Cmd+Enter (or Ctrl+Enter) sends your code. If you have two R sessions open and you’re looking at the wrong one, your code runs in a session that might not have the objects you expect.\n\n\n5.2.3 The Variables Pane\nThe Variables pane shows every object in your current R session — Seurat objects with their dimensions, dataframes with row and column counts, vectors, lists. Click any dataframe to open it in the Data Viewer. The pane updates in real time as you create, modify, or remove objects.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#the-data-viewer",
+    "href": "part2/positron.html#the-data-viewer",
+    "title": "5  Positron",
+    "section": "5.3 The Data Viewer",
+    "text": "5.3 The Data Viewer\nThe Data Viewer is one of Positron’s most useful features for data analysis work. There are two ways to open it:\n\nClick any dataframe in the Variables pane\nClick a .csv or .tsv file in the File Explorer — Positron opens it directly in the viewer\n\nOnce open, the Data Viewer lets you:\n\nSort by clicking column headers\nFilter rows using the filter bar\nSearch for specific values across the table\nSee distributions via column histograms at the top of each numeric column\n\n\n\n\n\n\n\nTipSeurat Objects\n\n\n\nYou can’t view a Seurat object directly in the Data Viewer — it’s a complex nested structure. To inspect cell metadata, run View(seu@meta.data) in the console. This opens just the metadata table in the viewer.\n\n\nDuring exploratory analysis, keep the Data Viewer open constantly — check data after each transformation, look for unexpected values, verify that joins worked correctly.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#navigating-your-project",
+    "href": "part2/positron.html#navigating-your-project",
+    "title": "5  Positron",
+    "section": "5.4 Navigating Your Project",
+    "text": "5.4 Navigating Your Project\n\n5.4.1 The File Explorer and Outline\nThe File Explorer in the left sidebar shows all files and folders in your project folder. Click files to open them — .csv and .tsv files open in the Data Viewer; code files open in the editor. Right-click to create, rename, or delete files.\nThe Outline panel shows the structure of the current document — for .Rmd files, it lists headings and code chunks. Click any item to jump to that section. Once your scripts get longer, the Outline is essential for navigation.\n\n\n5.4.2 Opening Files Quickly\nPress Cmd+P (Mac) or Ctrl+P (Windows) to open the Quick Open bar — start typing part of a filename and Positron shows matching files. Much faster than clicking through the File Explorer once your project has many files.\n\n\n5.4.3 Working with Multiple Files\nFiles open as tabs in the editor. Drag a tab to the right edge to split the view and see two files side by side — useful when reading one script’s outputs while writing code that depends on them.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#search",
+    "href": "part2/positron.html#search",
+    "title": "5  Positron",
+    "section": "5.5 Search",
+    "text": "5.5 Search\nPress Cmd+Shift+F (Mac) or Ctrl+Shift+F (Windows) to search across every file in your project. Useful for finding where a function is defined, locating every use of a variable, or searching for a specific column name across all your scripts.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#the-command-palette",
+    "href": "part2/positron.html#the-command-palette",
+    "title": "5  Positron",
+    "section": "5.6 The Command Palette",
+    "text": "5.6 The Command Palette\nThe Command Palette is Positron’s universal command search. Open it with Cmd+Shift+P (Mac) or Ctrl+Shift+P (Windows), then start typing what you want to do. It searches through every available command — switching R versions, changing settings, toggling panels.\nYou’ll encounter it most often when Claude Code gives you instructions like “open the Command Palette and type ‘R: Select R Binary’.” Rather than memorizing where every setting lives in menus, you type what you’re looking for.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#the-status-bar",
+    "href": "part2/positron.html#the-status-bar",
+    "title": "5  Positron",
+    "section": "5.7 The Status Bar",
+    "text": "5.7 The Status Bar\nThe status bar runs along the very bottom of the Positron window. It shows:\n\nActive R version (e.g., “R 4.4.2”) — click to change\nCurrent Git branch (e.g., “main”)\nLine and column number for your cursor position\n\nWhen something isn’t working — packages seem missing, or code behaves unexpectedly — check the status bar first. It often reveals the problem: you’re running the wrong R version.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#essential-keyboard-shortcuts",
+    "href": "part2/positron.html#essential-keyboard-shortcuts",
+    "title": "5  Positron",
+    "section": "5.8 Essential Keyboard Shortcuts",
+    "text": "5.8 Essential Keyboard Shortcuts\n\n\n\nAction\nMac\nWindows\n\n\n\n\nRun current line/selection\nCmd+Enter\nCtrl+Enter\n\n\nRun current chunk\nCmd+Shift+Enter\nCtrl+Shift+Enter\n\n\nOpen Command Palette\nCmd+Shift+P\nCtrl+Shift+P\n\n\nQuick file open\nCmd+P\nCtrl+P\n\n\nToggle terminal\nCmd+`\nCtrl+`\n\n\nSave file\nCmd+S\nCtrl+S\n\n\nProject-wide search\nCmd+Shift+F\nCtrl+Shift+F\n\n\n\nCmd+Enter (or Ctrl+Enter) is the one you’ll use constantly. The Command Palette is how you access anything in Positron you’re not sure how to find.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#working-with-r",
+    "href": "part2/positron.html#working-with-r",
+    "title": "5  Positron",
+    "section": "5.9 Working with R",
+    "text": "5.9 Working with R\n\n5.9.1 Starting and Restarting R\nAn R session starts automatically when you run R code from an .Rmd file. If the project has renv set up, you’ll see a message like Project loaded. [renv 1.0.0] confirming project-specific packages are active.\nRestarting R gives you a clean slate and is something you should do regularly. Click the restart icon (↻) in the Console toolbar, or press Cmd+Shift+0 (Mac) / Ctrl+Shift+0 (Windows).\nWhy restart? During interactive development, your R session accumulates objects — some created by your script, some typed manually in the console while exploring. Over time it gets hard to tell what’s in your script versus what you created on the fly. Restarting clears everything and lets you test whether your script is truly self-contained.\nAfter restarting, run your script from the top. If it executes cleanly, your script has all the code it needs. If it fails with “object not found” errors, something is missing from the script.\n\n\n\n\n\n\nWarningWorks interactively but fails on render?\n\n\n\nThis is a very common problem. You run chunks one by one and everything works, but when you render the document it fails. The cause is almost always an object you created manually in the console that isn’t in any chunk.\nTo diagnose: restart R, then run all chunks from the top. Whatever fails is missing from your script.\n\n\n\n\n5.9.2 Setting the R Version\nIf you need to change which R version Positron uses:\n\nOpen the Command Palette (Cmd+Shift+P / Ctrl+Shift+P)\nType “R: Select R Binary”\nChoose the version you want\n\nThis only needs to be done once per project — Positron remembers your choice.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#source-control-basics",
+    "href": "part2/positron.html#source-control-basics",
+    "title": "5  Positron",
+    "section": "5.10 Source Control Basics",
+    "text": "5.10 Source Control Basics\nThe Source Control panel (click the branch icon in the left sidebar, or Cmd+Shift+G / Ctrl+Shift+G) shows which files have changed since your last commit.\nBasic workflow: 1. Make changes to your files 2. Open Source Control — review changed files 3. Stage files by clicking the + icon 4. Type a commit message 5. Click the checkmark to commit 6. Push via the three-dot menu (⋯) → Push\n\n\n\n\n\n\nNote/done handles commits\n\n\n\nOnce you’re comfortable with the basics, the /done skill in Claude Code handles committing your work at the end of each session. But understanding the Source Control panel helps you verify that commits are correct.\n\n\nSee ?sec-git for a full introduction to Git and GitHub.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#when-things-go-wrong",
+    "href": "part2/positron.html#when-things-go-wrong",
+    "title": "5  Positron",
+    "section": "5.11 When Things Go Wrong",
+    "text": "5.11 When Things Go Wrong\n\n5.11.1 A Panel Disappeared\nGo to the View menu and look for the panel you need — View → Terminal, View → Console, etc. Or use the Command Palette and type the panel name.\n\n\n5.11.2 Console Won’t Start\nCheck the Output panel (View → Output) and select “R” from the dropdown — this shows diagnostic messages that often explain the actual error. Also check the status bar to verify the R path is correct. If all else fails, restart Positron.\n\n\n5.11.3 Wrong R Version Running\nCheck the status bar at the bottom. If it’s wrong, use the Command Palette: “R: Select R Binary”.\n\n\n5.11.4 Everything Feels Broken\nClose Positron completely and reopen your project. This fixes most transient issues — stuck processes, stale caches, panels that won’t respond.\nOn Windows, if Positron hangs on close, use Task Manager to end the process before reopening.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html#extensions",
+    "href": "part2/positron.html#extensions",
+    "title": "5  Positron",
+    "section": "5.12 Extensions",
+    "text": "5.12 Extensions\nPositron comes with most of what you need built in. A few extensions worth adding:\n\nQuarto — for .qmd file support (may already be installed)\nJupyter — for Python notebook support\nClaude Code — the AI coding assistant, if not already installed\n\nInstall extensions through the Extensions panel (Cmd+Shift+X / Ctrl+Shift+X), search for the name, and click Install.\n\n\n\n\n\n\nTipStart Minimal\n\n\n\nDon’t install a dozen extensions on day one. Start with the essentials above and add more only when you encounter a specific need.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
