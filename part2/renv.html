@@ -8,7 +8,7 @@
 
 <meta name="description" content="Adapted in part from the Musser Lab Compute Handbook, with thanks to Jacob Musser.">
 
-<title>7&nbsp; Renv – Data Analysis in the Horsley Lab</title>
+<title>7&nbsp; R and renv – Data Analysis in the Horsley Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -250,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/renv.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Renv</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/renv.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R and renv</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -343,7 +378,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part2/renv.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Renv</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R and renv</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -487,16 +522,36 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-problem-renv-solves" id="toc-the-problem-renv-solves" class="nav-link active" data-scroll-target="#the-problem-renv-solves"><span class="header-section-number">7.1</span> The Problem renv Solves</a></li>
+  <li><a href="#what-renv-created-in-your-project" id="toc-what-renv-created-in-your-project" class="nav-link" data-scroll-target="#what-renv-created-in-your-project"><span class="header-section-number">7.2</span> What renv Created in Your Project</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">7.3</span> Installing Packages</a></li>
+  <li><a href="#the-core-loop-install-snapshot-commit" id="toc-the-core-loop-install-snapshot-commit" class="nav-link" data-scroll-target="#the-core-loop-install-snapshot-commit"><span class="header-section-number">7.4</span> The Core Loop: Install → Snapshot → Commit</a></li>
+  <li><a href="#checking-status" id="toc-checking-status" class="nav-link" data-scroll-target="#checking-status"><span class="header-section-number">7.5</span> Checking Status</a></li>
+  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages"><span class="header-section-number">7.6</span> Updating Packages</a></li>
+  <li><a href="#what-to-commit-to-git" id="toc-what-to-commit-to-git" class="nav-link" data-scroll-target="#what-to-commit-to-git"><span class="header-section-number">7.7</span> What to Commit to Git</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">7.8</span> Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#the-project-is-out-of-sync" id="toc-the-project-is-out-of-sync" class="nav-link" data-scroll-target="#the-project-is-out-of-sync"><span class="header-section-number">7.8.1</span> “The project is out-of-sync”</a></li>
+  <li><a href="#package-installation-fails" id="toc-package-installation-fails" class="nav-link" data-scroll-target="#package-installation-fails"><span class="header-section-number">7.8.2</span> Package installation fails</a></li>
+  <li><a href="#renv-is-slow" id="toc-renv-is-slow" class="nav-link" data-scroll-target="#renv-is-slow"><span class="header-section-number">7.8.3</span> renv is slow</a></li>
+  <li><a href="#starting-fresh" id="toc-starting-fresh" class="nav-link" data-scroll-target="#starting-fresh"><span class="header-section-number">7.8.4</span> Starting fresh</a></li>
+  </ul></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">7.9</span> Quick Reference</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/renv.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Renv</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/renv.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R and renv</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Renv</span></h1>
+<h1 class="title"><span id="sec-renv" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R and renv</span></span></h1>
 </div>
 
 
@@ -513,21 +568,221 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<p>In <a href="../part1/first-project.html" class="quarto-xref"><span>Chapter 3</span></a>, you ran <code>renv::init()</code>, installed a few packages, and ran <code>renv::snapshot()</code> to lock everything down. It worked — but what actually happened? Where did those packages go? What is <code>renv.lock</code> recording?</p>
+<p>This chapter answers those questions. Managing R packages effectively requires one key tool: <strong>renv</strong>. It gives each project a self-contained, reproducible package library — so installing something for one project can’t break another, and your collaborators can reproduce your exact environment six months from now.</p>
+<section id="the-problem-renv-solves" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="the-problem-renv-solves"><span class="header-section-number">7.1</span> The Problem renv Solves</h2>
+<p>Without renv, every R project on your computer shares the same package library. Install a new version of ggplot2 for one project, and every other project gets it too. This causes two problems:</p>
+<ol type="1">
+<li><strong>Broken projects</strong> — updating a package for Project A might break something in Project B that depended on the old version</li>
+<li><strong>Irreproducibility</strong> — if you share your code with a collaborator, they might have different package versions installed and get different results</li>
+</ol>
+<p>renv solves both problems by giving each project its own private package library, and recording the exact version of every package in a lockfile (<code>renv.lock</code>). Anyone who clones your project can run <code>renv::restore()</code> and get the exact same packages you had.</p>
+</section>
+<section id="what-renv-created-in-your-project" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="what-renv-created-in-your-project"><span class="header-section-number">7.2</span> What renv Created in Your Project</h2>
+<p>When you ran <code>renv::init()</code>, renv created several files:</p>
+<p><strong><code>renv/</code></strong> — your project’s private package library. When you install packages, they go here, not into a shared system library.</p>
+<p><strong><code>renv.lock</code></strong> — a snapshot of every package in your project library: names, exact versions, and where they came from (CRAN, Bioconductor, GitHub). This is the key file for reproducibility.</p>
+<p><strong><code>.Rprofile</code></strong> — runs automatically when R starts in this folder. It activates renv so R uses your project library instead of the system library. This is why you see <code>Project loaded. [renv 1.0.0]</code> in the console when you open the project in Positron.</p>
+</section>
+<section id="installing-packages" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="installing-packages"><span class="header-section-number">7.3</span> Installing Packages</h2>
+<p>For most packages, <code>install.packages()</code> still works — renv intercepts the call and installs into your project library. But <code>renv::install()</code> is more versatile because it understands multiple sources:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from CRAN (either method works)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from Bioconductor (must use bioc:: prefix)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::DESeq2"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::SingleCellExperiment"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from GitHub</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"satijalab/seurat"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Install a specific version</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggplot2@3.4.0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>bioc::</code> prefix is important. Bioconductor is a separate repository of R packages for bioinformatics — things like DESeq2 for differential expression, SingleCellExperiment for single-cell data structures, and hundreds of other genomics tools. These packages aren’t on CRAN, so you need the prefix to tell renv where to find them.</p>
+<p>See <span class="quarto-unresolved-ref">?sec-r-packages</span> for a guide to common R packages used in the Horsley Lab.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Tip</span>Not sure which packages you need?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This chapter is coming soon.</p>
+<p>Ask Claude Code in Positron:</p>
+<blockquote class="blockquote">
+<p>I’m starting a scRNAseq analysis in my renv project. I need to run Seurat, do differential expression, and make publication-quality figures. What packages do I need and how do I install them?</p>
+</blockquote>
+<p>Claude will recommend the right packages and generate the correct <code>renv::install()</code> commands with the <code>bioc::</code> prefix for Bioconductor packages.</p>
 </div>
 </div>
+</section>
+<section id="the-core-loop-install-snapshot-commit" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="the-core-loop-install-snapshot-commit"><span class="header-section-number">7.4</span> The Core Loop: Install → Snapshot → Commit</h2>
+<p>After installing packages, the most important habit is <strong>snapshot</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This updates <code>renv.lock</code> with the exact versions of everything in your project library. After snapshotting, <strong>commit the updated <code>renv.lock</code> to git</strong>. This is the cycle you’ll repeat throughout a project:</p>
+<ol type="1">
+<li>Install or update a package</li>
+<li>Run <code>renv::snapshot()</code></li>
+<li>Commit <code>renv.lock</code> to git</li>
+</ol>
+<p>Why does this matter? Imagine a lab member clones your project from GitHub six months from now. The R code is all there, but without the right packages at the right versions, nothing runs. When they run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>renv reads <code>renv.lock</code> and installs every package at the exact version you recorded. They get the same environment you had — not whatever happens to be current on CRAN that day.</p>
+</section>
+<section id="checking-status" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="checking-status"><span class="header-section-number">7.5</span> Checking Status</h2>
+<p>Before committing your work, check whether your library and lockfile are in sync:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This tells you if any packages are installed but not recorded in the lockfile (you need to <code>snapshot()</code>), or missing from your library (you need to <code>restore()</code>).</p>
+<p>The most common message is <strong>“The project is out-of-sync.”</strong> This sounds alarming but usually just means you installed something and forgot to snapshot, or you pulled changes from git that updated the lockfile and haven’t restored yet.</p>
+<ul>
+<li><strong>Packages installed but not in lockfile</strong> → run <code>renv::snapshot()</code></li>
+<li><strong>Packages in lockfile but not installed</strong> → run <code>renv::restore()</code></li>
+</ul>
+</section>
+<section id="updating-packages" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="updating-packages"><span class="header-section-number">7.6</span> Updating Packages</h2>
+<p>Packages get updates — bug fixes, new features, performance improvements. To update everything in your project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or update a specific package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>(<span class="st">"Seurat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Useful habit: snapshot and commit before updating.</strong> That way, if an update breaks something, you can restore the previous state:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This reinstalls packages at the versions in <code>renv.lock</code>, effectively undoing the update.</p>
+</section>
+<section id="what-to-commit-to-git" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="what-to-commit-to-git"><span class="header-section-number">7.7</span> What to Commit to Git</h2>
+<p><strong>Include in git:</strong></p>
+<ul>
+<li><code>renv.lock</code> — the most important file; records exact package versions</li>
+<li><code>renv/activate.R</code> — the activation script</li>
+<li><code>.Rprofile</code> — auto-activates renv when R starts</li>
+</ul>
+<p><strong>Exclude from git</strong> (already in your <code>.gitignore</code>):</p>
+<ul>
+<li><code>renv/library/</code> — the actual installed packages (too large and platform-specific)</li>
+<li><code>renv/staging/</code> — temporary files during installation</li>
+</ul>
+<p>The default renv setup handles these <code>.gitignore</code> entries automatically when you run <code>renv::init()</code>.</p>
+</section>
+<section id="troubleshooting" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">7.8</span> Troubleshooting</h2>
+<section id="the-project-is-out-of-sync" class="level3" data-number="7.8.1">
+<h3 data-number="7.8.1" class="anchored" data-anchor-id="the-project-is-out-of-sync"><span class="header-section-number">7.8.1</span> “The project is out-of-sync”</h3>
+<p>Run <code>renv::status()</code> to see the details, then either <code>renv::snapshot()</code> or <code>renv::restore()</code> depending on the direction of the mismatch.</p>
+</section>
+<section id="package-installation-fails" class="level3" data-number="7.8.2">
+<h3 data-number="7.8.2" class="anchored" data-anchor-id="package-installation-fails"><span class="header-section-number">7.8.2</span> Package installation fails</h3>
+<p>Sometimes a package won’t install, especially packages with compiled code. Try:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"package-name"</span>, <span class="at">rebuild =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For Bioconductor packages, make sure your R version is compatible with the Bioconductor release you need.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Getting help with installation errors
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Paste the full error message into Claude Code in Positron:</p>
+<blockquote class="blockquote">
+<p>I’m trying to install DESeq2 with <code>renv::install("bioc::DESeq2")</code> but getting errors. Here’s the output: [paste error]. Can you help me figure out what’s wrong?</p>
+</blockquote>
+<p>Claude can check whether the error is a version mismatch, a missing system library, or a network issue, and suggest the fix.</p>
+</div>
+</div>
+</section>
+<section id="renv-is-slow" class="level3" data-number="7.8.3">
+<h3 data-number="7.8.3" class="anchored" data-anchor-id="renv-is-slow"><span class="header-section-number">7.8.3</span> renv is slow</h3>
+<p>The first time you run <code>renv::restore()</code> on a new machine, renv downloads and installs every package from scratch. This takes a while for projects with many packages — Seurat alone has dozens of dependencies. Be patient. Subsequent operations are faster because renv maintains a global cache — packages shared across projects only download once.</p>
+</section>
+<section id="starting-fresh" class="level3" data-number="7.8.4">
+<h3 data-number="7.8.4" class="anchored" data-anchor-id="starting-fresh"><span class="header-section-number">7.8.4</span> Starting fresh</h3>
+<p>If things are really broken:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">deactivate</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then in the terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> renv renv.lock .Rprofile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then reinitialize:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This removes your lockfile and the record of which package versions you had. Copy <code>renv.lock</code> somewhere safe before doing this if you need to preserve that information.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="quick-reference" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">7.9</span> Quick Reference</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Initialize renv</td>
+<td><code>renv::init()</code></td>
+</tr>
+<tr class="even">
+<td>Install from CRAN</td>
+<td><code>install.packages("pkg")</code> or <code>renv::install("pkg")</code></td>
+</tr>
+<tr class="odd">
+<td>Install from Bioconductor</td>
+<td><code>renv::install("bioc::pkg")</code></td>
+</tr>
+<tr class="even">
+<td>Install from GitHub</td>
+<td><code>renv::install("user/repo")</code></td>
+</tr>
+<tr class="odd">
+<td>Snapshot</td>
+<td><code>renv::snapshot()</code></td>
+</tr>
+<tr class="even">
+<td>Restore</td>
+<td><code>renv::restore()</code></td>
+</tr>
+<tr class="odd">
+<td>Check status</td>
+<td><code>renv::status()</code></td>
+</tr>
+<tr class="even">
+<td>Update all packages</td>
+<td><code>renv::update()</code></td>
+</tr>
+<tr class="odd">
+<td>Update one package</td>
+<td><code>renv::update("pkg")</code></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

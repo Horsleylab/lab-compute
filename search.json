@@ -669,12 +669,111 @@
   {
     "objectID": "part2/renv.html",
     "href": "part2/renv.html",
-    "title": "7  Renv",
+    "title": "7  R and renv",
     "section": "",
-    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "text": "7.1 The Problem renv Solves\nIn Chapter 3, you ran renv::init(), installed a few packages, and ran renv::snapshot() to lock everything down. It worked — but what actually happened? Where did those packages go? What is renv.lock recording?\nThis chapter answers those questions. Managing R packages effectively requires one key tool: renv. It gives each project a self-contained, reproducible package library — so installing something for one project can’t break another, and your collaborators can reproduce your exact environment six months from now.\nWithout renv, every R project on your computer shares the same package library. Install a new version of ggplot2 for one project, and every other project gets it too. This causes two problems:\nrenv solves both problems by giving each project its own private package library, and recording the exact version of every package in a lockfile (renv.lock). Anyone who clones your project can run renv::restore() and get the exact same packages you had.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Renv</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#the-problem-renv-solves",
+    "href": "part2/renv.html#the-problem-renv-solves",
+    "title": "7  R and renv",
+    "section": "",
+    "text": "Broken projects — updating a package for Project A might break something in Project B that depended on the old version\nIrreproducibility — if you share your code with a collaborator, they might have different package versions installed and get different results",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#what-renv-created-in-your-project",
+    "href": "part2/renv.html#what-renv-created-in-your-project",
+    "title": "7  R and renv",
+    "section": "7.2 What renv Created in Your Project",
+    "text": "7.2 What renv Created in Your Project\nWhen you ran renv::init(), renv created several files:\nrenv/ — your project’s private package library. When you install packages, they go here, not into a shared system library.\nrenv.lock — a snapshot of every package in your project library: names, exact versions, and where they came from (CRAN, Bioconductor, GitHub). This is the key file for reproducibility.\n.Rprofile — runs automatically when R starts in this folder. It activates renv so R uses your project library instead of the system library. This is why you see Project loaded. [renv 1.0.0] in the console when you open the project in Positron.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#installing-packages",
+    "href": "part2/renv.html#installing-packages",
+    "title": "7  R and renv",
+    "section": "7.3 Installing Packages",
+    "text": "7.3 Installing Packages\nFor most packages, install.packages() still works — renv intercepts the call and installs into your project library. But renv::install() is more versatile because it understands multiple sources:\n# Install from CRAN (either method works)\ninstall.packages(\"ggplot2\")\nrenv::install(\"ggplot2\")\n\n# Install from Bioconductor (must use bioc:: prefix)\nrenv::install(\"bioc::DESeq2\")\nrenv::install(\"bioc::SingleCellExperiment\")\n\n# Install from GitHub\nrenv::install(\"satijalab/seurat\")\n\n# Install a specific version\nrenv::install(\"ggplot2@3.4.0\")\nThe bioc:: prefix is important. Bioconductor is a separate repository of R packages for bioinformatics — things like DESeq2 for differential expression, SingleCellExperiment for single-cell data structures, and hundreds of other genomics tools. These packages aren’t on CRAN, so you need the prefix to tell renv where to find them.\nSee ?sec-r-packages for a guide to common R packages used in the Horsley Lab.\n\n\n\n\n\n\nTipNot sure which packages you need?\n\n\n\nAsk Claude Code in Positron:\n\nI’m starting a scRNAseq analysis in my renv project. I need to run Seurat, do differential expression, and make publication-quality figures. What packages do I need and how do I install them?\n\nClaude will recommend the right packages and generate the correct renv::install() commands with the bioc:: prefix for Bioconductor packages.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#the-core-loop-install-snapshot-commit",
+    "href": "part2/renv.html#the-core-loop-install-snapshot-commit",
+    "title": "7  R and renv",
+    "section": "7.4 The Core Loop: Install → Snapshot → Commit",
+    "text": "7.4 The Core Loop: Install → Snapshot → Commit\nAfter installing packages, the most important habit is snapshot:\nrenv::snapshot()\nThis updates renv.lock with the exact versions of everything in your project library. After snapshotting, commit the updated renv.lock to git. This is the cycle you’ll repeat throughout a project:\n\nInstall or update a package\nRun renv::snapshot()\nCommit renv.lock to git\n\nWhy does this matter? Imagine a lab member clones your project from GitHub six months from now. The R code is all there, but without the right packages at the right versions, nothing runs. When they run:\nrenv::restore()\nrenv reads renv.lock and installs every package at the exact version you recorded. They get the same environment you had — not whatever happens to be current on CRAN that day.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#checking-status",
+    "href": "part2/renv.html#checking-status",
+    "title": "7  R and renv",
+    "section": "7.5 Checking Status",
+    "text": "7.5 Checking Status\nBefore committing your work, check whether your library and lockfile are in sync:\nrenv::status()\nThis tells you if any packages are installed but not recorded in the lockfile (you need to snapshot()), or missing from your library (you need to restore()).\nThe most common message is “The project is out-of-sync.” This sounds alarming but usually just means you installed something and forgot to snapshot, or you pulled changes from git that updated the lockfile and haven’t restored yet.\n\nPackages installed but not in lockfile → run renv::snapshot()\nPackages in lockfile but not installed → run renv::restore()",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#updating-packages",
+    "href": "part2/renv.html#updating-packages",
+    "title": "7  R and renv",
+    "section": "7.6 Updating Packages",
+    "text": "7.6 Updating Packages\nPackages get updates — bug fixes, new features, performance improvements. To update everything in your project:\nrenv::update()\nOr update a specific package:\nrenv::update(\"Seurat\")\nUseful habit: snapshot and commit before updating. That way, if an update breaks something, you can restore the previous state:\nrenv::restore()\nThis reinstalls packages at the versions in renv.lock, effectively undoing the update.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#what-to-commit-to-git",
+    "href": "part2/renv.html#what-to-commit-to-git",
+    "title": "7  R and renv",
+    "section": "7.7 What to Commit to Git",
+    "text": "7.7 What to Commit to Git\nInclude in git:\n\nrenv.lock — the most important file; records exact package versions\nrenv/activate.R — the activation script\n.Rprofile — auto-activates renv when R starts\n\nExclude from git (already in your .gitignore):\n\nrenv/library/ — the actual installed packages (too large and platform-specific)\nrenv/staging/ — temporary files during installation\n\nThe default renv setup handles these .gitignore entries automatically when you run renv::init().",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#troubleshooting",
+    "href": "part2/renv.html#troubleshooting",
+    "title": "7  R and renv",
+    "section": "7.8 Troubleshooting",
+    "text": "7.8 Troubleshooting\n\n7.8.1 “The project is out-of-sync”\nRun renv::status() to see the details, then either renv::snapshot() or renv::restore() depending on the direction of the mismatch.\n\n\n7.8.2 Package installation fails\nSometimes a package won’t install, especially packages with compiled code. Try:\nrenv::install(\"package-name\", rebuild = TRUE)\nFor Bioconductor packages, make sure your R version is compatible with the Bioconductor release you need.\n\n\n\n\n\n\nTipGetting help with installation errors\n\n\n\nPaste the full error message into Claude Code in Positron:\n\nI’m trying to install DESeq2 with renv::install(\"bioc::DESeq2\") but getting errors. Here’s the output: [paste error]. Can you help me figure out what’s wrong?\n\nClaude can check whether the error is a version mismatch, a missing system library, or a network issue, and suggest the fix.\n\n\n\n\n7.8.3 renv is slow\nThe first time you run renv::restore() on a new machine, renv downloads and installs every package from scratch. This takes a while for projects with many packages — Seurat alone has dozens of dependencies. Be patient. Subsequent operations are faster because renv maintains a global cache — packages shared across projects only download once.\n\n\n7.8.4 Starting fresh\nIf things are really broken:\nrenv::deactivate()\nThen in the terminal:\nrm -rf renv renv.lock .Rprofile\nThen reinitialize:\nrenv::init()\n\n\n\n\n\n\nWarning\n\n\n\nThis removes your lockfile and the record of which package versions you had. Copy renv.lock somewhere safe before doing this if you need to preserve that information.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#quick-reference",
+    "href": "part2/renv.html#quick-reference",
+    "title": "7  R and renv",
+    "section": "7.9 Quick Reference",
+    "text": "7.9 Quick Reference\n\n\n\n\n\n\n\nTask\nCommand\n\n\n\n\nInitialize renv\nrenv::init()\n\n\nInstall from CRAN\ninstall.packages(\"pkg\") or renv::install(\"pkg\")\n\n\nInstall from Bioconductor\nrenv::install(\"bioc::pkg\")\n\n\nInstall from GitHub\nrenv::install(\"user/repo\")\n\n\nSnapshot\nrenv::snapshot()\n\n\nRestore\nrenv::restore()\n\n\nCheck status\nrenv::status()\n\n\nUpdate all packages\nrenv::update()\n\n\nUpdate one package\nrenv::update(\"pkg\")",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>R and renv</span>"
     ]
   },
   {
