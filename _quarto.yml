@@ -10,6 +10,7 @@ book:
   title: "Data Analysis in the Horsley Lab"
   subtitle: "A Practical Guide to Reproducible Research"
   author: "Valerie Horsley, in collaboration with Claude Code"
+  description: "Adapted in part from the [Musser Lab Compute Handbook](https://musserlab.github.io/lab-compute/), with thanks to Jacob Musser."
   date: today
   date-format: "MMMM YYYY"
 
