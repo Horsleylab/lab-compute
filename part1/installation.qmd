@@ -17,12 +17,17 @@ uname -m
 
 Write this down — you'll need it for the next steps.
 
+::: {.callout-note}
+## Windows users
+Most of this guide assumes macOS. If you're on Windows, the steps are similar but some commands differ. Where there are differences, both versions are shown. Ask in the lab Discord if you get stuck.
+:::
+
 ## Step 2: Install R
 
 We use R for all statistical analysis and single-cell work.
 
 1. Go to [cloud.r-project.org](https://cloud.r-project.org)
-2. Click **Download R for macOS**
+2. Click **Download R for macOS** (or Windows)
 3. Download the version matching your chip (Apple Silicon or Intel)
 4. Open the `.pkg` file and follow the installer
 
@@ -38,8 +43,8 @@ You should see something like `R version 4.4.x`.
 Positron is our coding environment (IDE). It's built for R and Python and has Claude Code built in.
 
 1. Go to [positron.posit.co](https://positron.posit.co)
-2. Download the version matching your chip
-3. Open the `.dmg` file and drag Positron to your Applications folder
+2. Download the version matching your chip (macOS Apple Silicon, macOS Intel, or Windows)
+3. Open the `.dmg` file and drag Positron to your Applications folder (macOS), or run the installer (Windows)
 4. Open Positron from your Applications folder
 
 ## Step 4: Install Quarto
@@ -47,41 +52,112 @@ Positron is our coding environment (IDE). It's built for R and Python and has Cl
 Quarto is what we use to write analysis documents that combine code, output, and text.
 
 1. Go to [quarto.org/docs/get-started](https://quarto.org/docs/get-started/)
-2. Download the macOS installer
+2. Download the macOS or Windows installer
 3. Run the installer
 
 ## Step 5: Install Claude Code
 
-Claude Code is the AI coding assistant we use in the lab.
-
-Follow the install guide at:
-[docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)
+Claude Code is the AI coding assistant we use in the lab. There are two ways to install it — try Method A first.
 
 ::: {.callout-important}
 You'll need an Anthropic account to use Claude Code. Ask Valerie if you need help getting access through the lab account.
 :::
 
+### Method A: Install via Positron Extensions (Recommended)
+
+This is the simplest method and works directly inside Positron:
+
+1. Open Positron
+2. Click the **Extensions** icon in the left sidebar (looks like four squares)
+3. Search for **Claude Code**
+4. Click **Install**
+
+Claude Code will appear as a panel in the Positron sidebar. This is where you'll use it for all lab work.
+
+### Method B: Install via Terminal
+
+If Method A doesn't work, install via the terminal:
+
+1. First, install Node.js from [nodejs.org](https://nodejs.org) — download the LTS version and run the installer
+2. Open Terminal and run:
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+3. Verify it worked:
+
+```bash
+claude --version
+```
+
+::: {.callout-warning}
+## `claude` command not found?
+If you type `claude` in Terminal and get "command not found", the install location isn't in your PATH. Try:
+
+```bash
+npx @anthropic-ai/claude-code
+```
+
+If that works, ask in the lab Discord for help adding it to your PATH permanently.
+:::
+
+::: {.callout-warning}
+## npm errors?
+If you get npm errors, make sure Node.js is installed first (`node --version` should return a version number). If Node.js is installed but npm still errors, try:
+
+```bash
+npm install -g @anthropic-ai/claude-code --force
+```
+
+Or fall back to Method A (installing via Positron Extensions).
+:::
+
 ## Step 6: Install the Lab Skills
 
-Our lab has custom Claude Code skills that teach Claude our conventions. These must be installed in the **Mac Terminal** (not the Positron sidebar).
+Our lab has custom Claude Code skills that teach Claude our conventions.
 
-Open Terminal, type `claude` to launch Claude Code, then run:
+### Method A: Install via Positron sidebar (try first)
+
+In the Claude Code panel in Positron, type:
 
 ```
 /plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills
 /plugin install horsley-lab-skills
 ```
 
-::: {.callout-tip}
-If `/plugin` gives you an error, make sure you typed `claude` first to launch Claude Code before running the plugin commands.
-:::
+### Method B: Install via Terminal
 
-To verify the skills installed, run in Terminal:
+If the Positron sidebar gives an error, open Terminal, type `claude` to launch Claude Code, then run:
+
+```
+/plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills
+/plugin install horsley-lab-skills
+```
+
+### Method C: Install manually (if Methods A and B don't work)
+
+If the plugin system isn't working, install the skills directly:
+
+```bash
+mkdir -p ~/.claude/skills
+cd ~/.claude/skills
+git clone https://github.com/Horsleylab/horsley-lab-skills.git temp
+cp -r temp/skills/* .
+rm -rf temp
+```
+
+To verify the skills installed, run:
 ```bash
 ls ~/.claude/skills/
 ```
 
 You should see folders including `audit-script`, `learn-code`, `new-project`, and others.
+
+::: {.callout-tip}
+## Skills update automatically
+If you installed via the plugin system (Methods A or B), skills update automatically when you restart Claude Code. If you installed manually (Method C), you'll need to re-run the clone commands to get updates.
+:::
 
 ## Step 7: Install Git
 
@@ -92,7 +168,7 @@ Check if you already have it:
 git --version
 ```
 
-If not installed, macOS will prompt you to install it automatically. Follow the prompts.
+If not installed, macOS will prompt you to install it automatically. Follow the prompts. On Windows, download Git from [git-scm.com](https://git-scm.com).
 
 Then configure it with your name and email:
 ```bash
@@ -114,3 +190,66 @@ Once all steps are complete, move on to @sec-first-project where you'll create y
 ## Getting Help
 If you get stuck at any step, ask in the lab Discord #resources channel or email [valerie.horsley@yale.edu](mailto:valerie.horsley@yale.edu).
 :::
+
+---
+
+## Troubleshooting
+
+### `claude` command not found in Terminal
+
+This means Claude Code wasn't added to your PATH during installation. Try:
+
+```bash
+npx @anthropic-ai/claude-code
+```
+
+If that works, the install succeeded but the PATH wasn't updated. Ask in the lab Discord for help fixing this permanently, or just use Claude Code via the Positron sidebar instead.
+
+### Claude Code not showing in Positron
+
+If Claude Code isn't visible as a panel in Positron after installing:
+
+1. Go to the Extensions panel (**Cmd+Shift+X** / **Ctrl+Shift+X**)
+2. Search "Claude Code"
+3. Make sure it shows as **Installed** — if not, click Install
+4. Restart Positron
+
+### `/plugin` command not recognized in Positron sidebar
+
+Some versions of Claude Code don't support `/plugin` in the sidebar — it only works in the terminal version. Try Method C (manual install) from Step 6 instead.
+
+### Plugin install fails with SSH error
+
+```
+SSH authentication failed
+```
+
+This means the plugin system is trying to use SSH to clone from GitHub but your SSH keys aren't set up. Use the HTTPS version of the command instead — make sure you're using:
+
+```
+/plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills
+```
+
+Not:
+
+```
+/plugin marketplace add github.com/Horsleylab/horsley-lab-skills
+```
+
+### Plugin install fails with "marketplace.json not found"
+
+This is a plugin system configuration issue. Skip to Method C (manual install) from Step 6.
+
+### npm errors during Claude Code install
+
+Make sure Node.js is installed first:
+
+```bash
+node --version
+```
+
+If you get "command not found", install Node.js from [nodejs.org](https://nodejs.org) first, then retry the npm install.
+
+### Nothing works
+
+Install Claude Code via the Positron Extensions panel (Step 5, Method A) and install the lab skills manually (Step 6, Method C). This combination bypasses all the terminal and PATH issues and works on any machine.
