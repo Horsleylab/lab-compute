@@ -531,11 +531,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-2-install-r" id="toc-step-2-install-r" class="nav-link" data-scroll-target="#step-2-install-r"><span class="header-section-number">2.2</span> Step 2: Install R</a></li>
   <li><a href="#step-3-install-positron" id="toc-step-3-install-positron" class="nav-link" data-scroll-target="#step-3-install-positron"><span class="header-section-number">2.3</span> Step 3: Install Positron</a></li>
   <li><a href="#step-4-install-quarto" id="toc-step-4-install-quarto" class="nav-link" data-scroll-target="#step-4-install-quarto"><span class="header-section-number">2.4</span> Step 4: Install Quarto</a></li>
-  <li><a href="#step-5-install-claude-code" id="toc-step-5-install-claude-code" class="nav-link" data-scroll-target="#step-5-install-claude-code"><span class="header-section-number">2.5</span> Step 5: Install Claude Code</a></li>
-  <li><a href="#step-6-install-the-lab-skills" id="toc-step-6-install-the-lab-skills" class="nav-link" data-scroll-target="#step-6-install-the-lab-skills"><span class="header-section-number">2.6</span> Step 6: Install the Lab Skills</a></li>
+  <li><a href="#step-5-install-claude-code" id="toc-step-5-install-claude-code" class="nav-link" data-scroll-target="#step-5-install-claude-code"><span class="header-section-number">2.5</span> Step 5: Install Claude Code</a>
+  <ul class="collapse">
+  <li><a href="#method-a-install-via-positron-extensions-recommended" id="toc-method-a-install-via-positron-extensions-recommended" class="nav-link" data-scroll-target="#method-a-install-via-positron-extensions-recommended"><span class="header-section-number">2.5.1</span> Method A: Install via Positron Extensions (Recommended)</a></li>
+  <li><a href="#method-b-install-via-terminal" id="toc-method-b-install-via-terminal" class="nav-link" data-scroll-target="#method-b-install-via-terminal"><span class="header-section-number">2.5.2</span> Method B: Install via Terminal</a></li>
+  </ul></li>
+  <li><a href="#step-6-install-the-lab-skills" id="toc-step-6-install-the-lab-skills" class="nav-link" data-scroll-target="#step-6-install-the-lab-skills"><span class="header-section-number">2.6</span> Step 6: Install the Lab Skills</a>
+  <ul class="collapse">
+  <li><a href="#method-a-install-via-positron-sidebar-try-first" id="toc-method-a-install-via-positron-sidebar-try-first" class="nav-link" data-scroll-target="#method-a-install-via-positron-sidebar-try-first"><span class="header-section-number">2.6.1</span> Method A: Install via Positron sidebar (try first)</a></li>
+  <li><a href="#method-b-install-via-terminal-1" id="toc-method-b-install-via-terminal-1" class="nav-link" data-scroll-target="#method-b-install-via-terminal-1"><span class="header-section-number">2.6.2</span> Method B: Install via Terminal</a></li>
+  <li><a href="#method-c-install-manually-if-methods-a-and-b-dont-work" id="toc-method-c-install-manually-if-methods-a-and-b-dont-work" class="nav-link" data-scroll-target="#method-c-install-manually-if-methods-a-and-b-dont-work"><span class="header-section-number">2.6.3</span> Method C: Install manually (if Methods A and B don’t work)</a></li>
+  </ul></li>
   <li><a href="#step-7-install-git" id="toc-step-7-install-git" class="nav-link" data-scroll-target="#step-7-install-git"><span class="header-section-number">2.7</span> Step 7: Install Git</a></li>
   <li><a href="#step-8-create-a-github-account" id="toc-step-8-create-a-github-account" class="nav-link" data-scroll-target="#step-8-create-a-github-account"><span class="header-section-number">2.8</span> Step 8: Create a GitHub Account</a></li>
   <li><a href="#youre-ready" id="toc-youre-ready" class="nav-link" data-scroll-target="#youre-ready"><span class="header-section-number">2.9</span> You’re Ready</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">2.10</span> Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#claude-command-not-found-in-terminal" id="toc-claude-command-not-found-in-terminal" class="nav-link" data-scroll-target="#claude-command-not-found-in-terminal"><span class="header-section-number">2.10.1</span> <code>claude</code> command not found in Terminal</a></li>
+  <li><a href="#claude-code-not-showing-in-positron" id="toc-claude-code-not-showing-in-positron" class="nav-link" data-scroll-target="#claude-code-not-showing-in-positron"><span class="header-section-number">2.10.2</span> Claude Code not showing in Positron</a></li>
+  <li><a href="#plugin-command-not-recognized-in-positron-sidebar" id="toc-plugin-command-not-recognized-in-positron-sidebar" class="nav-link" data-scroll-target="#plugin-command-not-recognized-in-positron-sidebar"><span class="header-section-number">2.10.3</span> <code>/plugin</code> command not recognized in Positron sidebar</a></li>
+  <li><a href="#plugin-install-fails-with-ssh-error" id="toc-plugin-install-fails-with-ssh-error" class="nav-link" data-scroll-target="#plugin-install-fails-with-ssh-error"><span class="header-section-number">2.10.4</span> Plugin install fails with SSH error</a></li>
+  <li><a href="#plugin-install-fails-with-marketplace.json-not-found" id="toc-plugin-install-fails-with-marketplace.json-not-found" class="nav-link" data-scroll-target="#plugin-install-fails-with-marketplace.json-not-found"><span class="header-section-number">2.10.5</span> Plugin install fails with “marketplace.json not found”</a></li>
+  <li><a href="#npm-errors-during-claude-code-install" id="toc-npm-errors-during-claude-code-install" class="nav-link" data-scroll-target="#npm-errors-during-claude-code-install"><span class="header-section-number">2.10.6</span> npm errors during Claude Code install</a></li>
+  <li><a href="#nothing-works" id="toc-nothing-works" class="nav-link" data-scroll-target="#nothing-works"><span class="header-section-number">2.10.7</span> Nothing works</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -573,13 +592,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>x86_64</code> → Intel</li>
 </ul>
 <p>Write this down — you’ll need it for the next steps.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Windows users
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most of this guide assumes macOS. If you’re on Windows, the steps are similar but some commands differ. Where there are differences, both versions are shown. Ask in the lab Discord if you get stuck.</p>
+</div>
+</div>
 </section>
 <section id="step-2-install-r" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="step-2-install-r"><span class="header-section-number">2.2</span> Step 2: Install R</h2>
 <p>We use R for all statistical analysis and single-cell work.</p>
 <ol type="1">
 <li>Go to <a href="https://cloud.r-project.org">cloud.r-project.org</a></li>
-<li>Click <strong>Download R for macOS</strong></li>
+<li>Click <strong>Download R for macOS</strong> (or Windows)</li>
 <li>Download the version matching your chip (Apple Silicon or Intel)</li>
 <li>Open the <code>.pkg</code> file and follow the installer</li>
 </ol>
@@ -592,8 +624,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Positron is our coding environment (IDE). It’s built for R and Python and has Claude Code built in.</p>
 <ol type="1">
 <li>Go to <a href="https://positron.posit.co">positron.posit.co</a></li>
-<li>Download the version matching your chip</li>
-<li>Open the <code>.dmg</code> file and drag Positron to your Applications folder</li>
+<li>Download the version matching your chip (macOS Apple Silicon, macOS Intel, or Windows)</li>
+<li>Open the <code>.dmg</code> file and drag Positron to your Applications folder (macOS), or run the installer (Windows)</li>
 <li>Open Positron from your Applications folder</li>
 </ol>
 </section>
@@ -602,14 +634,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Quarto is what we use to write analysis documents that combine code, output, and text.</p>
 <ol type="1">
 <li>Go to <a href="https://quarto.org/docs/get-started/">quarto.org/docs/get-started</a></li>
-<li>Download the macOS installer</li>
+<li>Download the macOS or Windows installer</li>
 <li>Run the installer</li>
 </ol>
 </section>
 <section id="step-5-install-claude-code" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="step-5-install-claude-code"><span class="header-section-number">2.5</span> Step 5: Install Claude Code</h2>
-<p>Claude Code is the AI coding assistant we use in the lab.</p>
-<p>Follow the install guide at: <a href="https://docs.anthropic.com/en/docs/claude-code/overview">docs.anthropic.com/en/docs/claude-code/overview</a></p>
+<p>Claude Code is the AI coding assistant we use in the lab. There are two ways to install it — try Method A first.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -623,39 +654,111 @@ Important
 <p>You’ll need an Anthropic account to use Claude Code. Ask Valerie if you need help getting access through the lab account.</p>
 </div>
 </div>
+<section id="method-a-install-via-positron-extensions-recommended" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="method-a-install-via-positron-extensions-recommended"><span class="header-section-number">2.5.1</span> Method A: Install via Positron Extensions (Recommended)</h3>
+<p>This is the simplest method and works directly inside Positron:</p>
+<ol type="1">
+<li>Open Positron</li>
+<li>Click the <strong>Extensions</strong> icon in the left sidebar (looks like four squares)</li>
+<li>Search for <strong>Claude Code</strong></li>
+<li>Click <strong>Install</strong></li>
+</ol>
+<p>Claude Code will appear as a panel in the Positron sidebar. This is where you’ll use it for all lab work.</p>
+</section>
+<section id="method-b-install-via-terminal" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="method-b-install-via-terminal"><span class="header-section-number">2.5.2</span> Method B: Install via Terminal</h3>
+<p>If Method A doesn’t work, install via the terminal:</p>
+<ol type="1">
+<li>First, install Node.js from <a href="https://nodejs.org">nodejs.org</a> — download the LTS version and run the installer</li>
+<li>Open Terminal and run:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Verify it worked:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code>claude</code> command not found?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you type <code>claude</code> in Terminal and get “command not found”, the install location isn’t in your PATH. Try:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If that works, ask in the lab Discord for help adding it to your PATH permanently.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>npm errors?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you get npm errors, make sure Node.js is installed first (<code>node --version</code> should return a version number). If Node.js is installed but npm still errors, try:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code <span class="at">--force</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or fall back to Method A (installing via Positron Extensions).</p>
+</div>
+</div>
+</section>
 </section>
 <section id="step-6-install-the-lab-skills" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="step-6-install-the-lab-skills"><span class="header-section-number">2.6</span> Step 6: Install the Lab Skills</h2>
-<p>Our lab has custom Claude Code skills that teach Claude our conventions. These must be installed in the <strong>Mac Terminal</strong> (not the Positron sidebar).</p>
-<p>Open Terminal, type <code>claude</code> to launch Claude Code, then run:</p>
+<p>Our lab has custom Claude Code skills that teach Claude our conventions.</p>
+<section id="method-a-install-via-positron-sidebar-try-first" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="method-a-install-via-positron-sidebar-try-first"><span class="header-section-number">2.6.1</span> Method A: Install via Positron sidebar (try first)</h3>
+<p>In the Claude Code panel in Positron, type:</p>
 <pre><code>/plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills
 /plugin install horsley-lab-skills</code></pre>
+</section>
+<section id="method-b-install-via-terminal-1" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="method-b-install-via-terminal-1"><span class="header-section-number">2.6.2</span> Method B: Install via Terminal</h3>
+<p>If the Positron sidebar gives an error, open Terminal, type <code>claude</code> to launch Claude Code, then run:</p>
+<pre><code>/plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills
+/plugin install horsley-lab-skills</code></pre>
+</section>
+<section id="method-c-install-manually-if-methods-a-and-b-dont-work" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="method-c-install-manually-if-methods-a-and-b-dont-work"><span class="header-section-number">2.6.3</span> Method C: Install manually (if Methods A and B don’t work)</h3>
+<p>If the plugin system isn’t working, install the skills directly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.claude/skills</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/.claude/skills</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/Horsleylab/horsley-lab-skills.git temp</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> temp/skills/<span class="pp">*</span> .</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> temp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To verify the skills installed, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see folders including <code>audit-script</code>, <code>learn-code</code>, <code>new-project</code>, and others.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Skills update automatically
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If <code>/plugin</code> gives you an error, make sure you typed <code>claude</code> first to launch Claude Code before running the plugin commands.</p>
+<p>If you installed via the plugin system (Methods A or B), skills update automatically when you restart Claude Code. If you installed manually (Method C), you’ll need to re-run the clone commands to get updates.</p>
 </div>
 </div>
-<p>To verify the skills installed, run in Terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see folders including <code>audit-script</code>, <code>learn-code</code>, <code>new-project</code>, and others.</p>
+</section>
 </section>
 <section id="step-7-install-git" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="step-7-install-git"><span class="header-section-number">2.7</span> Step 7: Install Git</h2>
 <p>Git is how we track changes to code and collaborate with others.</p>
 <p>Check if you already have it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If not installed, macOS will prompt you to install it automatically. Follow the prompts.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If not installed, macOS will prompt you to install it automatically. Follow the prompts. On Windows, download Git from <a href="https://git-scm.com">git-scm.com</a>.</p>
 <p>Then configure it with your name and email:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@yale.edu"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@yale.edu"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="step-8-create-a-github-account" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="step-8-create-a-github-account"><span class="header-section-number">2.8</span> Step 8: Create a GitHub Account</h2>
@@ -678,8 +781,54 @@ Tip
 <p>If you get stuck at any step, ask in the lab Discord #resources channel or email <a href="mailto:valerie.horsley@yale.edu">valerie.horsley@yale.edu</a>.</p>
 </div>
 </div>
+<hr>
+</section>
+<section id="troubleshooting" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">2.10</span> Troubleshooting</h2>
+<section id="claude-command-not-found-in-terminal" class="level3" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="claude-command-not-found-in-terminal"><span class="header-section-number">2.10.1</span> <code>claude</code> command not found in Terminal</h3>
+<p>This means Claude Code wasn’t added to your PATH during installation. Try:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If that works, the install succeeded but the PATH wasn’t updated. Ask in the lab Discord for help fixing this permanently, or just use Claude Code via the Positron sidebar instead.</p>
+</section>
+<section id="claude-code-not-showing-in-positron" class="level3" data-number="2.10.2">
+<h3 data-number="2.10.2" class="anchored" data-anchor-id="claude-code-not-showing-in-positron"><span class="header-section-number">2.10.2</span> Claude Code not showing in Positron</h3>
+<p>If Claude Code isn’t visible as a panel in Positron after installing:</p>
+<ol type="1">
+<li>Go to the Extensions panel (<strong>Cmd+Shift+X</strong> / <strong>Ctrl+Shift+X</strong>)</li>
+<li>Search “Claude Code”</li>
+<li>Make sure it shows as <strong>Installed</strong> — if not, click Install</li>
+<li>Restart Positron</li>
+</ol>
+</section>
+<section id="plugin-command-not-recognized-in-positron-sidebar" class="level3" data-number="2.10.3">
+<h3 data-number="2.10.3" class="anchored" data-anchor-id="plugin-command-not-recognized-in-positron-sidebar"><span class="header-section-number">2.10.3</span> <code>/plugin</code> command not recognized in Positron sidebar</h3>
+<p>Some versions of Claude Code don’t support <code>/plugin</code> in the sidebar — it only works in the terminal version. Try Method C (manual install) from Step 6 instead.</p>
+</section>
+<section id="plugin-install-fails-with-ssh-error" class="level3" data-number="2.10.4">
+<h3 data-number="2.10.4" class="anchored" data-anchor-id="plugin-install-fails-with-ssh-error"><span class="header-section-number">2.10.4</span> Plugin install fails with SSH error</h3>
+<pre><code>SSH authentication failed</code></pre>
+<p>This means the plugin system is trying to use SSH to clone from GitHub but your SSH keys aren’t set up. Use the HTTPS version of the command instead — make sure you’re using:</p>
+<pre><code>/plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills</code></pre>
+<p>Not:</p>
+<pre><code>/plugin marketplace add github.com/Horsleylab/horsley-lab-skills</code></pre>
+</section>
+<section id="plugin-install-fails-with-marketplace.json-not-found" class="level3" data-number="2.10.5">
+<h3 data-number="2.10.5" class="anchored" data-anchor-id="plugin-install-fails-with-marketplace.json-not-found"><span class="header-section-number">2.10.5</span> Plugin install fails with “marketplace.json not found”</h3>
+<p>This is a plugin system configuration issue. Skip to Method C (manual install) from Step 6.</p>
+</section>
+<section id="npm-errors-during-claude-code-install" class="level3" data-number="2.10.6">
+<h3 data-number="2.10.6" class="anchored" data-anchor-id="npm-errors-during-claude-code-install"><span class="header-section-number">2.10.6</span> npm errors during Claude Code install</h3>
+<p>Make sure Node.js is installed first:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you get “command not found”, install Node.js from <a href="https://nodejs.org">nodejs.org</a> first, then retry the npm install.</p>
+</section>
+<section id="nothing-works" class="level3" data-number="2.10.7">
+<h3 data-number="2.10.7" class="anchored" data-anchor-id="nothing-works"><span class="header-section-number">2.10.7</span> Nothing works</h3>
+<p>Install Claude Code via the Positron Extensions panel (Step 5, Method A) and install the lab skills manually (Step 6, Method C). This combination bypasses all the terminal and PATH issues and works on any machine.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
