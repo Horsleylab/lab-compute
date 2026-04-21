@@ -1,5 +1,286 @@
-# Lab Skills
+# Lab Skills Reference {#sec-lab-skills}
+
+The Horsley Lab has a set of custom Claude Code skills that teach Claude our conventions and workflows. This appendix documents what each skill does, when to use it, and how to use it effectively.
+
+Skills are installed from the Horsleylab GitHub organization. See @sec-installation for install instructions.
+
+---
+
+## Slash Commands
+
+These skills are invoked by typing a command in the Claude Code sidebar or terminal.
+
+### `/new-project`
+
+**When to use:** At the start of any new analysis project.
+
+**What it does:** Scaffolds a complete project with the correct Horsley Lab folder structure, initializes renv, sets up git, creates a `CLAUDE.md`, and optionally connects to GitHub.
+
+**How to use it:**
+
+1. Create a folder for your project and open it in Positron
+2. Type `/new-project` in the Claude Code sidebar
+3. Answer the questions — project type, name, description, whether you'll use the Bouchet cluster, GitHub settings
+
+Claude will create everything in one step. You'll end up with:
+
+```
+project-name/
+├── data/raw/
+├── data/processed/
+├── scripts/scratch/
+├── outputs/figures/
+├── outputs/tables/
+├── docs/
+├── .claude/CLAUDE.md
+├── renv.lock
+└── README.md
+```
+
+**Example:**
+```
+/new-project
+```
+
+---
+
+### `/new-plan`
+
+**When to use:** When starting a multi-session analysis that needs tracking — anything that will take more than one or two sessions to complete.
+
+**What it does:** Creates a planning document in `.claude/` that tracks phases, scripts, key decisions, and next steps. At the end of each session, `/done` updates this document automatically.
+
+**How to use it:**
+
+```
+/new-plan wound healing scRNAseq annotation
+```
+
+Claude will ask whether you want a data science or general style plan, and whether to use checkboxes or a status table. It creates a `.md` file in `.claude/` and registers it in your `CLAUDE.md`.
+
+**Example planning document:**
+
+```markdown
+# Wound Healing scRNAseq Annotation Plan
+
+## Status
+| Phase | Description | Status |
+|-------|-------------|--------|
+| 1 | QC and filtering | ✅ Done |
+| 2 | Normalization and clustering | 🔄 In progress |
+| 3 | Cell type annotation | ⬜ Not started |
+
+## Key Decisions
+- 2024-03-15 — Excluded sample WH_003 (482 cells, below 500 threshold)
+- 2024-03-18 — Using log-normalize not SCTransform; CellChat requires RNA assay
+
+## Working Notes
+Testing resolutions 0.4–0.8 for clustering. UMAP looks good at 0.5.
+```
+
+---
+
+### `/audit-script`
+
+**When to use:** Before sending any script to Valerie or a collaborator for review. Also useful when you're not sure if your analysis is correct.
+
+**What it does:** Systematically reviews a script for bugs, analytical issues, data handling problems, style, and reproducibility gaps. Produces a structured report saved to `outputs/audit_reports/`.
+
+::: {.callout-important}
+## Lab policy
+Run `/audit-script` before sending any script for review. Think of it like spell-checking before sending an email — it catches problems and shows you've thought carefully about your work.
+:::
+
+**Three modes:**
+
+- **Thorough** — Collaborative, section-by-section. Claude walks through the script with you, asks questions, and you run code together. Best for learning or for scripts with complex analytical choices.
+- **Fast** — Claude reads the whole script independently and presents findings for discussion. Best for a quick pre-review before meeting with Valerie.
+- **Report only** — Claude audits independently and saves a report. Best for a quick quality check you'll read on your own.
+
+**How to use it:**
+
+```
+/audit-script
+```
+
+Claude will ask which script to audit, which mode, and whether you have specific concerns.
+
+**What it checks:**
+
+- **Correctness** — bugs, wrong variable references, functions used incorrectly
+- **Analytical reasoning** — is the statistical test appropriate? are thresholds justified?
+- **Data handling** — silent cell drops, wrong assay slot, unvalidated joins
+- **Style** — clarity, naming, comments, magic numbers
+- **Reproducibility** — hardcoded paths, missing `set.seed()`, undocumented inputs
+
+**Example findings:**
+
+```
+BUG-1: Wrong assay slot for FindMarkers
+- Lines: 47-50
+- Description: DefaultAssay is SCT but FindMarkers requires RNA counts for DESeq2 test
+- Recommendation: Add DefaultAssay(seu) <- "RNA" before FindMarkers()
+
+WARNING-1: Missing set.seed() before RunUMAP
+- Lines: 62
+- Description: UMAP is stochastic — results will differ between runs
+- Recommendation: Add set.seed(42) before RunUMAP()
+```
+
+---
+
+### `/learn-code`
+
+**When to use:** When you want to understand a script — one someone else wrote, one from a paper, or one you wrote a while ago and have forgotten.
+
+**What it does:** Walks through a script interactively, section by section, covering what the code does mechanically, why it's organized that way, and what analytical choices are embedded in it. Generates study notes at the end.
+
+**Three focus modes:**
+
+- **Balanced** (default) — equal attention to mechanics and analytical reasoning
+- **Focus on mechanics** — more time on syntax and functions; good for building coding fluency
+- **Focus on analysis** — skim syntax, dive deep into analytical choices; good if you already know R
+
+**How to use it:**
+
+```
+/learn-code
+```
+
+Claude will ask which script to walk through and your experience level, then guide you through it section by section. You'll be asked to run code in your console and predict what it produces before Claude explains it.
+
+**At the end**, Claude generates study notes you can save to `outputs/` — a summary of what the script does, key concepts learned, analytical decisions made, and questions to think about.
+
+---
+
+### `/done`
+
+**When to use:** At the end of every working session.
+
+**What it does:** Summarizes what you did, updates the session log in `CLAUDE.md`, updates any planning documents, consolidates scratch files, checks renv, and commits your work to git.
+
+**How to use it:**
+
+```
+/done
+```
+
+Claude will:
+
+1. List what was completed this session
+2. Append a session log entry to `.claude/CLAUDE.md`
+3. Update any relevant planning documents
+4. Check `scripts/scratch/` for files to consolidate
+5. Check if renv needs a snapshot
+6. Propose a git commit with the session's files
+7. Offer to push to GitHub
+
+**Example session log entry:**
+
+```markdown
+### 2024-03-20 — Clustering and annotation
+
+- **Plans:** WOUND_HEALING_SCRNA_PLAN.md
+- **Work:** Tested resolutions 0.4-0.8, chose 0.5 (14 clusters). Started cell type
+  annotation using published skin markers.
+- **Next:** Finish annotating ambiguous clusters 7 and 11. Run FindMarkers for
+  cluster markers.
+```
+
+::: {.callout-tip}
+Make `/done` a habit. The session log means you always know exactly where you left off, even after a long break.
+:::
+
+---
+
+## Auto-Loading Skills
+
+These skills load automatically when Claude detects a relevant task. You don't need to invoke them manually.
+
+### `horsley-lab-conventions`
+
+**When it loads:** When setting up a new project or when Claude detects you're working without a clear folder structure.
+
+**What it does:** Tells Claude our standard project structure, script naming conventions, data rules, and output conventions. Ensures Claude always organizes projects the Horsley Lab way.
+
+**Key conventions it enforces:**
+
+- Numbered scripts (`01_`, `02_`, etc.) run in order and reproduce all results
+- Scratch files in `scripts/scratch/` are exploratory — consolidate before finishing
+- Raw data in `data/raw/` is read-only — scripts never write there
+- All outputs go in `outputs/` with descriptive names
+
+---
+
+### `data-handling`
+
+**When it loads:** When writing data manipulation code, analysis pipelines, or `.Rmd` scripts that process biological datasets.
+
+**What it does:** Applies Horsley Lab best practices for data handling automatically. Ensures Claude always shows data summaries at key steps, annotates analytical decisions, and validates data to prevent silent data loss.
+
+**Key behaviors it triggers:**
+
+- Reports cell/row counts after every filter, join, or subset
+- Checks active assay before any Seurat operation
+- Annotates normalization choices, QC thresholds, and clustering resolutions with rationale
+- Flags silent data loss risks (inner joins, NA removal, factor level drops)
+- Stops to ask before making important analytical choices
+
+**Example — with data-handling active, Claude writes:**
+
+```r
+# Filter low-quality cells: nFeature_RNA > 200 removes empty droplets,
+# < 6000 removes likely doublets; percent.mt < 20 removes dying cells
+# Thresholds chosen based on QC plots from 01_qc.Rmd
+seu <- subset(seu, subset = nFeature_RNA > 200 &
+                             nFeature_RNA < 6000 &
+                             percent.mt < 20)
+cat("After QC filter:", ncol(seu), "cells retained\n")
+```
+
+Instead of just:
+
+```r
+seu <- subset(seu, subset = nFeature_RNA > 200 & nFeature_RNA < 6000 & percent.mt < 20)
+```
+
+---
+
+### `cleanup-scripts`
+
+**When it loads:** When finishing a session, when `scripts/scratch/` has accumulated files, or when you say "clean up scripts" or "wrap up this session."
+
+**What it does:** Checks `scripts/scratch/` for working files that need consolidation into numbered `.Rmd` scripts, flags unnumbered scripts that should be numbered, and verifies script-output correspondence.
 
 ::: {.callout-note}
-This chapter is coming soon.
+`/done` includes script cleanup automatically. If you use `/done` at the end of every session, you don't need to invoke `cleanup-scripts` separately.
 :::
+
+---
+
+## Tips for Getting the Most from Skills
+
+**Be specific when invoking slash commands.** You can give context directly:
+
+```
+/new-plan — this is for the adipocyte EV scRNAseq analysis, data science style
+```
+
+```
+/audit-script — I'm worried about the DE section, we switched assays midway through
+```
+
+**Skills work in Claude Code only, not the chat.** All slash commands require Claude Code (Positron sidebar or terminal). They won't work in the regular claude.ai chat interface.
+
+**Skills update automatically.** When you restart Claude Code, the latest version of the lab skills is pulled from GitHub automatically. You don't need to reinstall.
+
+---
+
+## Suggesting New Skills or Reporting Problems
+
+If a skill does something wrong, doesn't handle a situation you ran into, or you have an idea for a new skill:
+
+- Open an issue at [github.com/Horsleylab/horsley-lab-skills](https://github.com/Horsleylab/horsley-lab-skills)
+- Or email [valerie.horsley@yale.edu](mailto:valerie.horsley@yale.edu)
+
+Include which skill was involved, what happened, and what you expected.
