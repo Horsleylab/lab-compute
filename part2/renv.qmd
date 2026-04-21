@@ -1,5 +1,198 @@
-# Renv
+# R and renv {#sec-renv}
 
-::: {.callout-note}
-This chapter is coming soon.
+In @sec-first-project, you ran `renv::init()`, installed a few packages, and ran `renv::snapshot()` to lock everything down. It worked — but what actually happened? Where did those packages go? What is `renv.lock` recording?
+
+This chapter answers those questions. Managing R packages effectively requires one key tool: **renv**. It gives each project a self-contained, reproducible package library — so installing something for one project can't break another, and your collaborators can reproduce your exact environment six months from now.
+
+## The Problem renv Solves
+
+Without renv, every R project on your computer shares the same package library. Install a new version of ggplot2 for one project, and every other project gets it too. This causes two problems:
+
+1. **Broken projects** — updating a package for Project A might break something in Project B that depended on the old version
+2. **Irreproducibility** — if you share your code with a collaborator, they might have different package versions installed and get different results
+
+renv solves both problems by giving each project its own private package library, and recording the exact version of every package in a lockfile (`renv.lock`). Anyone who clones your project can run `renv::restore()` and get the exact same packages you had.
+
+## What renv Created in Your Project
+
+When you ran `renv::init()`, renv created several files:
+
+**`renv/`** — your project's private package library. When you install packages, they go here, not into a shared system library.
+
+**`renv.lock`** — a snapshot of every package in your project library: names, exact versions, and where they came from (CRAN, Bioconductor, GitHub). This is the key file for reproducibility.
+
+**`.Rprofile`** — runs automatically when R starts in this folder. It activates renv so R uses your project library instead of the system library. This is why you see `Project loaded. [renv 1.0.0]` in the console when you open the project in Positron.
+
+## Installing Packages
+
+For most packages, `install.packages()` still works — renv intercepts the call and installs into your project library. But `renv::install()` is more versatile because it understands multiple sources:
+
+```r
+# Install from CRAN (either method works)
+install.packages("ggplot2")
+renv::install("ggplot2")
+
+# Install from Bioconductor (must use bioc:: prefix)
+renv::install("bioc::DESeq2")
+renv::install("bioc::SingleCellExperiment")
+
+# Install from GitHub
+renv::install("satijalab/seurat")
+
+# Install a specific version
+renv::install("ggplot2@3.4.0")
+```
+
+The `bioc::` prefix is important. Bioconductor is a separate repository of R packages for bioinformatics — things like DESeq2 for differential expression, SingleCellExperiment for single-cell data structures, and hundreds of other genomics tools. These packages aren't on CRAN, so you need the prefix to tell renv where to find them.
+
+See @sec-r-packages for a guide to common R packages used in the Horsley Lab.
+
+::: {.callout-tip}
+## Not sure which packages you need?
+Ask Claude Code in Positron:
+
+> I'm starting a scRNAseq analysis in my renv project. I need to run Seurat, do differential expression, and make publication-quality figures. What packages do I need and how do I install them?
+
+Claude will recommend the right packages and generate the correct `renv::install()` commands with the `bioc::` prefix for Bioconductor packages.
 :::
+
+## The Core Loop: Install → Snapshot → Commit
+
+After installing packages, the most important habit is **snapshot**:
+
+```r
+renv::snapshot()
+```
+
+This updates `renv.lock` with the exact versions of everything in your project library. After snapshotting, **commit the updated `renv.lock` to git**. This is the cycle you'll repeat throughout a project:
+
+1. Install or update a package
+2. Run `renv::snapshot()`
+3. Commit `renv.lock` to git
+
+Why does this matter? Imagine a lab member clones your project from GitHub six months from now. The R code is all there, but without the right packages at the right versions, nothing runs. When they run:
+
+```r
+renv::restore()
+```
+
+renv reads `renv.lock` and installs every package at the exact version you recorded. They get the same environment you had — not whatever happens to be current on CRAN that day.
+
+## Checking Status
+
+Before committing your work, check whether your library and lockfile are in sync:
+
+```r
+renv::status()
+```
+
+This tells you if any packages are installed but not recorded in the lockfile (you need to `snapshot()`), or missing from your library (you need to `restore()`).
+
+The most common message is **"The project is out-of-sync."** This sounds alarming but usually just means you installed something and forgot to snapshot, or you pulled changes from git that updated the lockfile and haven't restored yet.
+
+- **Packages installed but not in lockfile** → run `renv::snapshot()`
+- **Packages in lockfile but not installed** → run `renv::restore()`
+
+## Updating Packages
+
+Packages get updates — bug fixes, new features, performance improvements. To update everything in your project:
+
+```r
+renv::update()
+```
+
+Or update a specific package:
+
+```r
+renv::update("Seurat")
+```
+
+**Useful habit: snapshot and commit before updating.** That way, if an update breaks something, you can restore the previous state:
+
+```r
+renv::restore()
+```
+
+This reinstalls packages at the versions in `renv.lock`, effectively undoing the update.
+
+## What to Commit to Git
+
+**Include in git:**
+
+- `renv.lock` — the most important file; records exact package versions
+- `renv/activate.R` — the activation script
+- `.Rprofile` — auto-activates renv when R starts
+
+**Exclude from git** (already in your `.gitignore`):
+
+- `renv/library/` — the actual installed packages (too large and platform-specific)
+- `renv/staging/` — temporary files during installation
+
+The default renv setup handles these `.gitignore` entries automatically when you run `renv::init()`.
+
+## Troubleshooting
+
+### "The project is out-of-sync"
+
+Run `renv::status()` to see the details, then either `renv::snapshot()` or `renv::restore()` depending on the direction of the mismatch.
+
+### Package installation fails
+
+Sometimes a package won't install, especially packages with compiled code. Try:
+
+```r
+renv::install("package-name", rebuild = TRUE)
+```
+
+For Bioconductor packages, make sure your R version is compatible with the Bioconductor release you need.
+
+::: {.callout-tip}
+## Getting help with installation errors
+Paste the full error message into Claude Code in Positron:
+
+> I'm trying to install DESeq2 with `renv::install("bioc::DESeq2")` but getting errors. Here's the output: [paste error]. Can you help me figure out what's wrong?
+
+Claude can check whether the error is a version mismatch, a missing system library, or a network issue, and suggest the fix.
+:::
+
+### renv is slow
+
+The first time you run `renv::restore()` on a new machine, renv downloads and installs every package from scratch. This takes a while for projects with many packages — Seurat alone has dozens of dependencies. Be patient. Subsequent operations are faster because renv maintains a global cache — packages shared across projects only download once.
+
+### Starting fresh
+
+If things are really broken:
+
+```r
+renv::deactivate()
+```
+
+Then in the terminal:
+
+```bash
+rm -rf renv renv.lock .Rprofile
+```
+
+Then reinitialize:
+
+```r
+renv::init()
+```
+
+::: {.callout-warning}
+This removes your lockfile and the record of which package versions you had. Copy `renv.lock` somewhere safe before doing this if you need to preserve that information.
+:::
+
+## Quick Reference
+
+| Task | Command |
+|------|---------|
+| Initialize renv | `renv::init()` |
+| Install from CRAN | `install.packages("pkg")` or `renv::install("pkg")` |
+| Install from Bioconductor | `renv::install("bioc::pkg")` |
+| Install from GitHub | `renv::install("user/repo")` |
+| Snapshot | `renv::snapshot()` |
+| Restore | `renv::restore()` |
+| Check status | `renv::status()` |
+| Update all packages | `renv::update()` |
+| Update one package | `renv::update("pkg")` |
