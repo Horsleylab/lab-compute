@@ -1,0 +1,592 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Analysis in the Horsley Lab",
+    "section": "",
+    "text": "Welcome\nThis guide teaches reproducible, collaborative data analysis workflows for the Horsley Lab at Yale. Our lab studies skin biology, wound healing, fibrosis, and stem cells — and increasingly, our science depends on computational analysis of complex datasets: single-cell RNA-seq, spatial transcriptomics, bulk RNA-seq, and proteomics.\nThis handbook will help you get set up, learn the tools, and start doing real analysis — the right way from the beginning.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#who-this-guide-is-for",
+    "href": "index.html#who-this-guide-is-for",
+    "title": "Data Analysis in the Horsley Lab",
+    "section": "Who This Guide Is For",
+    "text": "Who This Guide Is For\nThis guide is for anyone joining the Horsley Lab who will be doing computational work. You don’t need prior experience with the tools we use — we’ll walk you through everything. If you’ve used R or Python before, great. If not, that’s fine too.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use-this-book",
+    "href": "index.html#how-to-use-this-book",
+    "title": "Data Analysis in the Horsley Lab",
+    "section": "How to Use This Book",
+    "text": "How to Use This Book\nStart with Part 1: Quick Start. Install the tools, set up your computer, and run your first analysis. Every new lab member should begin here.\nParts 2–4 are reference material you’ll return to as needed:\n\nPart 2: Core Tools — Deeper coverage of Positron, project organization, renv, and Git/GitHub\nPart 3: Working with AI — How to work effectively with Claude Code as a coding collaborator\nPart 4: Single-Cell Analysis — Horsley Lab-specific workflows for scRNAseq and spatial transcriptomics\nPart 5: Workflows — Practical guides for common tasks",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#our-goal",
+    "href": "index.html#our-goal",
+    "title": "Data Analysis in the Horsley Lab",
+    "section": "Our Goal",
+    "text": "Our Goal\nEvery lab member should feel confident doing computational work — not just running scripts someone else wrote, but understanding and building their own analyses. The tools in this guide are chosen to make that easier: a modern IDE, environment managers that keep projects organized, version control for sharing code, and AI assistants that help you write, debug, and learn faster.\nEverything we do is oriented around one principle: your analyses should be reproducible and understandable by others in the lab.\nQuestions? Email valerie.horsley@yale.edu or ask in the lab Discord.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "part1/intro.html",
+    "href": "part1/intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 What We Analyze\nWelcome to the Horsley Lab. This chapter gives you a brief overview of how we work computationally before you dive into installation and setup.\nThe Horsley Lab studies skin biology, wound healing, fibrosis, and stem cells. Our computational work centers on:",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "part1/intro.html#what-we-analyze",
+    "href": "part1/intro.html#what-we-analyze",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Single-cell RNA sequencing (scRNAseq) — profiling gene expression in individual cells to understand cell types and states in skin and wound tissue\nSpatial transcriptomics (Visium) — measuring gene expression while preserving tissue spatial context\nBulk RNA sequencing — comparing gene expression across conditions or genotypes\nProteomics and lipidomics — measuring protein and lipid profiles in tissues and extracellular vesicles",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "part1/intro.html#our-tools",
+    "href": "part1/intro.html#our-tools",
+    "title": "1  Introduction",
+    "section": "1.2 Our Tools",
+    "text": "1.2 Our Tools\nWe use a standard set of tools for all computational work in the lab:\n\n\n\nTool\nWhat it’s for\n\n\n\n\nR\nStatistical analysis, scRNAseq, plotting\n\n\nSeurat\nSingle-cell RNA-seq analysis\n\n\nPositron\nOur IDE (coding environment)\n\n\nrenv\nR package management\n\n\nGit & GitHub\nVersion control and collaboration\n\n\nClaude Code\nAI coding assistant\n\n\nQuarto\nWriting analysis documents\n\n\n\nYou don’t need to know any of these yet — the next chapter will walk you through installing everything.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "part1/intro.html#how-we-organize-work",
+    "href": "part1/intro.html#how-we-organize-work",
+    "title": "1  Introduction",
+    "section": "1.3 How We Organize Work",
+    "text": "1.3 How We Organize Work\nEvery analysis project in the lab follows a standard folder structure:\nproject-name/\n├── data/\n│   ├── raw/          ← original files, never modified\n│   └── processed/    ← cleaned/transformed data\n├── scripts/\n│   ├── 01_qc.Rmd          ← numbered in order of execution\n│   ├── 02_preprocessing.Rmd\n│   └── scratch/           ← exploratory files\n├── outputs/\n│   ├── figures/\n│   └── tables/\n├── docs/\n└── README.md\nThis structure makes it easy for anyone in the lab to understand and reproduce your work. You’ll set this up automatically using our /new-project skill in Chapter 3.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "part1/intro.html#working-with-ai",
+    "href": "part1/intro.html#working-with-ai",
+    "title": "1  Introduction",
+    "section": "1.4 Working with AI",
+    "text": "1.4 Working with AI\nWe use Claude Code as an AI coding assistant throughout our work. It can help you write code, debug errors, understand scripts, and audit your analyses. We have custom lab skills that teach Claude our conventions — you’ll install these in the next chapter.\n\n\n\n\n\n\nNoteA Note on AI and Learning\n\n\n\nClaude Code is a powerful tool, but it’s not a substitute for understanding your analysis. Use it to help you write and debug code, but always make sure you understand what the code is doing and why. The /learn-code skill exists specifically to help you build that understanding.\n\n\nLet’s get started with installation.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html",
+    "href": "part1/installation.html",
+    "title": "2  Installation",
+    "section": "",
+    "text": "2.1 Step 1: Find Out Your Mac Chip\nThis chapter walks you through setting up everything you need for computational work in the Horsley Lab. Do these steps in order.\nYou need to know whether your Mac has an Apple Silicon chip (M1/M2/M3/M4) or an Intel chip, because you’ll download different software versions for each.\nOpen Terminal (search for it in Spotlight with Cmd+Space, type “Terminal”) and run:\nWrite this down — you’ll need it for the next steps.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-1-find-out-your-mac-chip",
+    "href": "part1/installation.html#step-1-find-out-your-mac-chip",
+    "title": "2  Installation",
+    "section": "",
+    "text": "uname -m\n\narm64 → Apple Silicon (M1/M2/M3/M4)\nx86_64 → Intel",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-2-install-r",
+    "href": "part1/installation.html#step-2-install-r",
+    "title": "2  Installation",
+    "section": "2.2 Step 2: Install R",
+    "text": "2.2 Step 2: Install R\nWe use R for all statistical analysis and single-cell work.\n\nGo to cloud.r-project.org\nClick Download R for macOS\nDownload the version matching your chip (Apple Silicon or Intel)\nOpen the .pkg file and follow the installer\n\nTo verify it worked, open Terminal and run:\nR --version\nYou should see something like R version 4.4.x.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-3-install-positron",
+    "href": "part1/installation.html#step-3-install-positron",
+    "title": "2  Installation",
+    "section": "2.3 Step 3: Install Positron",
+    "text": "2.3 Step 3: Install Positron\nPositron is our coding environment (IDE). It’s built for R and Python and has Claude Code built in.\n\nGo to positron.posit.co\nDownload the version matching your chip\nOpen the .dmg file and drag Positron to your Applications folder\nOpen Positron from your Applications folder",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-4-install-quarto",
+    "href": "part1/installation.html#step-4-install-quarto",
+    "title": "2  Installation",
+    "section": "2.4 Step 4: Install Quarto",
+    "text": "2.4 Step 4: Install Quarto\nQuarto is what we use to write analysis documents that combine code, output, and text.\n\nGo to quarto.org/docs/get-started\nDownload the macOS installer\nRun the installer",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-5-install-claude-code",
+    "href": "part1/installation.html#step-5-install-claude-code",
+    "title": "2  Installation",
+    "section": "2.5 Step 5: Install Claude Code",
+    "text": "2.5 Step 5: Install Claude Code\nClaude Code is the AI coding assistant we use in the lab.\nFollow the install guide at: docs.anthropic.com/en/docs/claude-code/overview\n\n\n\n\n\n\nImportant\n\n\n\nYou’ll need an Anthropic account to use Claude Code. Ask Valerie if you need help getting access through the lab account.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-6-install-the-lab-skills",
+    "href": "part1/installation.html#step-6-install-the-lab-skills",
+    "title": "2  Installation",
+    "section": "2.6 Step 6: Install the Lab Skills",
+    "text": "2.6 Step 6: Install the Lab Skills\nOur lab has custom Claude Code skills that teach Claude our conventions. These must be installed in the Mac Terminal (not the Positron sidebar).\nOpen Terminal, type claude to launch Claude Code, then run:\n/plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills\n/plugin install horsley-lab-skills\n\n\n\n\n\n\nTip\n\n\n\nIf /plugin gives you an error, make sure you typed claude first to launch Claude Code before running the plugin commands.\n\n\nTo verify the skills installed, run in Terminal:\nls ~/.claude/skills/\nYou should see folders including audit-script, learn-code, new-project, and others.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-7-install-git",
+    "href": "part1/installation.html#step-7-install-git",
+    "title": "2  Installation",
+    "section": "2.7 Step 7: Install Git",
+    "text": "2.7 Step 7: Install Git\nGit is how we track changes to code and collaborate with others.\nCheck if you already have it:\ngit --version\nIf not installed, macOS will prompt you to install it automatically. Follow the prompts.\nThen configure it with your name and email:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"your.email@yale.edu\"",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#step-8-create-a-github-account",
+    "href": "part1/installation.html#step-8-create-a-github-account",
+    "title": "2  Installation",
+    "section": "2.8 Step 8: Create a GitHub Account",
+    "text": "2.8 Step 8: Create a GitHub Account\nIf you don’t have one, create a free account at github.com. Use your Yale email address.\nThen ask Valerie to add you to the Horsleylab GitHub organization.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/installation.html#youre-ready",
+    "href": "part1/installation.html#youre-ready",
+    "title": "2  Installation",
+    "section": "2.9 You’re Ready",
+    "text": "2.9 You’re Ready\nOnce all steps are complete, move on to Chapter 3 where you’ll create your first analysis project.\n\n\n\n\n\n\nNoteGetting Help\n\n\n\nIf you get stuck at any step, ask in the lab Discord #resources channel or email valerie.horsley@yale.edu.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html",
+    "href": "part1/first-project.html",
+    "title": "3  Your First R Project",
+    "section": "",
+    "text": "3.1 Open Positron\nIn this chapter you’ll create your first analysis project using the Horsley Lab conventions. We’ll use the /new-project skill to set everything up automatically.\nOpen Positron from your Applications folder. You’ll see a layout similar to RStudio but more modern:",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#open-positron",
+    "href": "part1/first-project.html#open-positron",
+    "title": "3  Your First R Project",
+    "section": "",
+    "text": "Left sidebar — file explorer, git, extensions\nMain area — code editor\nBottom panel — terminal, console, output\nRight sidebar — Claude Code chat panel",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#create-a-project-folder",
+    "href": "part1/first-project.html#create-a-project-folder",
+    "title": "3  Your First R Project",
+    "section": "3.2 Create a Project Folder",
+    "text": "3.2 Create a Project Folder\nFirst, create a folder for your project. In Terminal:\nmkdir ~/projects/my-first-project\ncd ~/projects/my-first-project\nThen in Positron, go to File → Open Folder and open my-first-project.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#use-new-project-to-set-up-the-structure",
+    "href": "part1/first-project.html#use-new-project-to-set-up-the-structure",
+    "title": "3  Your First R Project",
+    "section": "3.3 Use /new-project to Set Up the Structure",
+    "text": "3.3 Use /new-project to Set Up the Structure\nIn the Claude Code sidebar in Positron, type:\n/new-project\nClaude will ask you a few questions:\n\nProject type — choose Data science\nProject name — my-first-project (or whatever you chose)\nBrief description — one sentence about what this project is for\nPython needed? — No for now\nLayout — Flat\nCluster? — No for now\nGitHub — Personal account, Private\n\nClaude Code will then create the full folder structure, initialize renv, create a README, CLAUDE.md, and set up git.\n\n\n\n\n\n\nTip\n\n\n\nThe /new-project skill sets up everything according to Horsley Lab conventions automatically. You don’t need to create folders manually.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#explore-the-structure",
+    "href": "part1/first-project.html#explore-the-structure",
+    "title": "3  Your First R Project",
+    "section": "3.4 Explore the Structure",
+    "text": "3.4 Explore the Structure\nAfter /new-project finishes, you should see:\nmy-first-project/\n├── data/\n│   ├── raw/\n│   └── processed/\n├── scripts/\n│   └── scratch/\n├── outputs/\n│   ├── figures/\n│   └── tables/\n├── docs/\n├── .claude/\n│   └── CLAUDE.md\n├── renv/\n├── renv.lock\n└── README.md",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#create-your-first-script",
+    "href": "part1/first-project.html#create-your-first-script",
+    "title": "3  Your First R Project",
+    "section": "3.5 Create Your First Script",
+    "text": "3.5 Create Your First Script\nIn Positron, create a new file called 01_import.Rmd in the scripts/ folder.\nAdd this content:\n---\ntitle: \"01 — Import and Explore Data\"\ndate: \"2026-04-21\"\noutput: html_document\n---\n\n\n\n## Load Data\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# We'll add data loading here\ncat(\"Script is working!\\n\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nScript is working!\n```\n\n\n:::\n:::",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#run-the-script",
+    "href": "part1/first-project.html#run-the-script",
+    "title": "3  Your First R Project",
+    "section": "3.6 Run the Script",
+    "text": "3.6 Run the Script\nClick the Run button next to any code chunk, or use Cmd+Shift+Enter to run the current chunk. You should see “Script is working!” in the console.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#use-done-to-wrap-up",
+    "href": "part1/first-project.html#use-done-to-wrap-up",
+    "title": "3  Your First R Project",
+    "section": "3.7 Use /done to Wrap Up",
+    "text": "3.7 Use /done to Wrap Up\nAt the end of any working session, type in the Claude Code sidebar:\n/done\nThis will summarize what you did, update your CLAUDE.md session log, and commit your work to git.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#next-steps",
+    "href": "part1/first-project.html#next-steps",
+    "title": "3  Your First R Project",
+    "section": "3.8 Next Steps",
+    "text": "3.8 Next Steps\nYou now have a working project with the correct Horsley Lab structure. In the next chapter, you’ll learn how to work with Claude Code day-to-day to help you write and understand code.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First R Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html",
+    "href": "part1/claude-code.html",
+    "title": "4  Working with Claude Code",
+    "section": "",
+    "text": "4.1 What Claude Code Can Do\nClaude Code is an AI coding assistant built into Positron. This chapter covers how to use it effectively for day-to-day analysis work in the lab.\nClaude Code can help you:",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html#what-claude-code-can-do",
+    "href": "part1/claude-code.html#what-claude-code-can-do",
+    "title": "4  Working with Claude Code",
+    "section": "",
+    "text": "Write code — describe what you want and it writes the R or Python\nDebug errors — paste an error message and it explains what went wrong and how to fix it\nUnderstand code — use /learn-code to walk through any script section by section\nAudit scripts — use /audit-script before submitting work for review\nSet up projects — use /new-project to scaffold a new analysis\nWrap up sessions — use /done to commit work and update your session log",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html#the-lab-skills",
+    "href": "part1/claude-code.html#the-lab-skills",
+    "title": "4  Working with Claude Code",
+    "section": "4.2 The Lab Skills",
+    "text": "4.2 The Lab Skills\nWhen you installed the Horsley Lab skills, you gave Claude Code knowledge of our specific conventions. This means Claude already knows:\n\nOur folder structure (data/raw/, scripts/scratch/, outputs/figures/)\nSeurat-specific best practices (checking active assay, tracking cell counts, etc.)\nHow to audit an R script for common single-cell analysis mistakes\nHow to set up a new project the Horsley Lab way",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html#how-to-ask-for-help-effectively",
+    "href": "part1/claude-code.html#how-to-ask-for-help-effectively",
+    "title": "4  Working with Claude Code",
+    "section": "4.3 How to Ask for Help Effectively",
+    "text": "4.3 How to Ask for Help Effectively\nThe more context you give Claude Code, the better it can help. Instead of:\n\n“My code isn’t working”\n\nTry:\n\n“I’m trying to run FindMarkers() on my Seurat object but getting an error that says ‘object of type closure is not subsettable’. Here’s my code: [paste code]”\n\nGood things to include: - The exact error message - The relevant code - What you were trying to do - What data you’re working with (e.g., “a Seurat object with 8,000 cells from wound healing tissue”)",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html#the-slash-commands",
+    "href": "part1/claude-code.html#the-slash-commands",
+    "title": "4  Working with Claude Code",
+    "section": "4.4 The Slash Commands",
+    "text": "4.4 The Slash Commands\nType these in the Claude Code sidebar:\n\n\n\nCommand\nWhen to use it\n\n\n\n\n/new-project\nStarting a new analysis project\n\n\n/new-plan\nPlanning a multi-session analysis\n\n\n/learn-code\nUnderstanding a script you didn’t write\n\n\n/audit-script\nBefore sending a script for review\n\n\n/done\nAt the end of every working session",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html#a-typical-day",
+    "href": "part1/claude-code.html#a-typical-day",
+    "title": "4  Working with Claude Code",
+    "section": "4.5 A Typical Day",
+    "text": "4.5 A Typical Day\nHere’s what a typical working session looks like:\n\nOpen your project in Positron (File → Open Folder)\nCheck the session log in .claude/CLAUDE.md to see where you left off\nWork on your analysis — ask Claude Code for help as needed\nRun /done at the end of the session to commit and update the log",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html#before-you-send-code-for-review",
+    "href": "part1/claude-code.html#before-you-send-code-for-review",
+    "title": "4  Working with Claude Code",
+    "section": "4.6 Before You Send Code for Review",
+    "text": "4.6 Before You Send Code for Review\nBefore sending any script to Valerie or a collaborator for review, always run:\n/audit-script\nThis catches bugs, analytical issues, and reproducibility problems before anyone else sees them. It will produce a report in outputs/audit_reports/.\n\n\n\n\n\n\nImportantRunning /audit-script before review is lab policy\n\n\n\nThink of it like spell-checking before sending an email — it’s a quick step that catches problems and shows you’ve thought carefully about your work.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part1/claude-code.html#getting-help",
+    "href": "part1/claude-code.html#getting-help",
+    "title": "4  Working with Claude Code",
+    "section": "4.7 Getting Help",
+    "text": "4.7 Getting Help\nIf Claude Code can’t help with something, ask in the lab Discord or email valerie.horsley@yale.edu.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Working with Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "part2/positron.html",
+    "href": "part2/positron.html",
+    "title": "5  Positron",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Positron</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html",
+    "href": "part2/project-organization.html",
+    "title": "6  Project Organization",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html",
+    "href": "part2/renv.html",
+    "title": "7  Renv",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html",
+    "href": "part2/git-github.html",
+    "title": "8  Git Github",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Git Github</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/ai-fluency.html",
+    "href": "claude-code/ai-fluency.html",
+    "title": "9  Ai Fluency",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Working with AI",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Ai Fluency</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/getting-started.html",
+    "href": "claude-code/getting-started.html",
+    "title": "10  Getting Started",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Working with AI",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/working-effectively.html",
+    "href": "claude-code/working-effectively.html",
+    "title": "11  Working Effectively",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Working with AI",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Working Effectively</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/horsley-lab-toolkit.html",
+    "href": "claude-code/horsley-lab-toolkit.html",
+    "title": "12  Horsley Lab Toolkit",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Working with AI",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Horsley Lab Toolkit</span>"
+    ]
+  },
+  {
+    "objectID": "scrna/overview.html",
+    "href": "scrna/overview.html",
+    "title": "13  Overview",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Single-Cell Analysis",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "scrna/seurat-workflow.html",
+    "href": "scrna/seurat-workflow.html",
+    "title": "14  Seurat Workflow",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Single-Cell Analysis",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Seurat Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "scrna/spatial.html",
+    "href": "scrna/spatial.html",
+    "title": "15  Spatial",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Single-Cell Analysis",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Spatial</span>"
+    ]
+  },
+  {
+    "objectID": "scrna/troubleshooting.html",
+    "href": "scrna/troubleshooting.html",
+    "title": "16  Troubleshooting",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Single-Cell Analysis",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Troubleshooting</span>"
+    ]
+  },
+  {
+    "objectID": "part3/setup-walkthrough.html",
+    "href": "part3/setup-walkthrough.html",
+    "title": "17  Setup Walkthrough",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Workflows",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Setup Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "part3/reproducibility.html",
+    "href": "part3/reproducibility.html",
+    "title": "18  Reproducibility",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Workflows",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Reproducibility</span>"
+    ]
+  },
+  {
+    "objectID": "part3/troubleshooting.html",
+    "href": "part3/troubleshooting.html",
+    "title": "19  Troubleshooting",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Workflows",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Troubleshooting</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/commands.html",
+    "href": "appendices/commands.html",
+    "title": "Appendix A — Commands",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Commands</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/r-packages.html",
+    "href": "appendices/r-packages.html",
+    "title": "Appendix B — R Packages",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>R Packages</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/lab-skills.html",
+    "href": "appendices/lab-skills.html",
+    "title": "Appendix C — Lab Skills",
+    "section": "",
+    "text": "Note\n\n\n\nThis chapter is coming soon.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Lab Skills</span>"
+    ]
+  }
+]
