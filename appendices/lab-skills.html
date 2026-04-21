@@ -8,7 +8,7 @@
 
 <meta name="description" content="Adapted in part from the Musser Lab Compute Handbook, with thanks to Jacob Musser.">
 
-<title>Appendix C — Lab Skills – Data Analysis in the Horsley Lab</title>
+<title>Appendix C — Lab Skills Reference – Data Analysis in the Horsley Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -249,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/commands.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/lab-skills.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Lab Skills</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/commands.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/lab-skills.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Lab Skills Reference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -476,7 +511,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendices/lab-skills.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Lab Skills</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Lab Skills Reference</span></span></a>
   </div>
 </li>
       </ul>
@@ -486,16 +521,37 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#slash-commands" id="toc-slash-commands" class="nav-link active" data-scroll-target="#slash-commands"><span class="header-section-number">C.1</span> Slash Commands</a>
+  <ul class="collapse">
+  <li><a href="#new-project" id="toc-new-project" class="nav-link" data-scroll-target="#new-project"><span class="header-section-number">C.1.1</span> <code>/new-project</code></a></li>
+  <li><a href="#new-plan" id="toc-new-plan" class="nav-link" data-scroll-target="#new-plan"><span class="header-section-number">C.1.2</span> <code>/new-plan</code></a></li>
+  <li><a href="#audit-script" id="toc-audit-script" class="nav-link" data-scroll-target="#audit-script"><span class="header-section-number">C.1.3</span> <code>/audit-script</code></a></li>
+  <li><a href="#learn-code" id="toc-learn-code" class="nav-link" data-scroll-target="#learn-code"><span class="header-section-number">C.1.4</span> <code>/learn-code</code></a></li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done"><span class="header-section-number">C.1.5</span> <code>/done</code></a></li>
+  </ul></li>
+  <li><a href="#auto-loading-skills" id="toc-auto-loading-skills" class="nav-link" data-scroll-target="#auto-loading-skills"><span class="header-section-number">C.2</span> Auto-Loading Skills</a>
+  <ul class="collapse">
+  <li><a href="#horsley-lab-conventions" id="toc-horsley-lab-conventions" class="nav-link" data-scroll-target="#horsley-lab-conventions"><span class="header-section-number">C.2.1</span> <code>horsley-lab-conventions</code></a></li>
+  <li><a href="#data-handling" id="toc-data-handling" class="nav-link" data-scroll-target="#data-handling"><span class="header-section-number">C.2.2</span> <code>data-handling</code></a></li>
+  <li><a href="#cleanup-scripts" id="toc-cleanup-scripts" class="nav-link" data-scroll-target="#cleanup-scripts"><span class="header-section-number">C.2.3</span> <code>cleanup-scripts</code></a></li>
+  </ul></li>
+  <li><a href="#tips-for-getting-the-most-from-skills" id="toc-tips-for-getting-the-most-from-skills" class="nav-link" data-scroll-target="#tips-for-getting-the-most-from-skills"><span class="header-section-number">C.3</span> Tips for Getting the Most from Skills</a></li>
+  <li><a href="#suggesting-new-skills-or-reporting-problems" id="toc-suggesting-new-skills-or-reporting-problems" class="nav-link" data-scroll-target="#suggesting-new-skills-or-reporting-problems"><span class="header-section-number">C.4</span> Suggesting New Skills or Reporting Problems</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/commands.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/lab-skills.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Lab Skills</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/commands.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/lab-skills.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Lab Skills Reference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix C — Lab Skills</h1>
+<h1 class="title"><span id="sec-lab-skills" class="quarto-section-identifier">Appendix C — Lab Skills Reference</span></h1>
 </div>
 
 
@@ -512,6 +568,208 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The Horsley Lab has a set of custom Claude Code skills that teach Claude our conventions and workflows. This appendix documents what each skill does, when to use it, and how to use it effectively.</p>
+<p>Skills are installed from the Horsleylab GitHub organization. See <a href="../part1/installation.html" class="quarto-xref"><span>Chapter 2</span></a> for install instructions.</p>
+<hr>
+<section id="slash-commands" class="level2" data-number="C.1">
+<h2 data-number="C.1" class="anchored" data-anchor-id="slash-commands"><span class="header-section-number">C.1</span> Slash Commands</h2>
+<p>These skills are invoked by typing a command in the Claude Code sidebar or terminal.</p>
+<section id="new-project" class="level3" data-number="C.1.1">
+<h3 data-number="C.1.1" class="anchored" data-anchor-id="new-project"><span class="header-section-number">C.1.1</span> <code>/new-project</code></h3>
+<p><strong>When to use:</strong> At the start of any new analysis project.</p>
+<p><strong>What it does:</strong> Scaffolds a complete project with the correct Horsley Lab folder structure, initializes renv, sets up git, creates a <code>CLAUDE.md</code>, and optionally connects to GitHub.</p>
+<p><strong>How to use it:</strong></p>
+<ol type="1">
+<li>Create a folder for your project and open it in Positron</li>
+<li>Type <code>/new-project</code> in the Claude Code sidebar</li>
+<li>Answer the questions — project type, name, description, whether you’ll use the Bouchet cluster, GitHub settings</li>
+</ol>
+<p>Claude will create everything in one step. You’ll end up with:</p>
+<pre><code>project-name/
+├── data/raw/
+├── data/processed/
+├── scripts/scratch/
+├── outputs/figures/
+├── outputs/tables/
+├── docs/
+├── .claude/CLAUDE.md
+├── renv.lock
+└── README.md</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code>/new-project</code></pre>
+<hr>
+</section>
+<section id="new-plan" class="level3" data-number="C.1.2">
+<h3 data-number="C.1.2" class="anchored" data-anchor-id="new-plan"><span class="header-section-number">C.1.2</span> <code>/new-plan</code></h3>
+<p><strong>When to use:</strong> When starting a multi-session analysis that needs tracking — anything that will take more than one or two sessions to complete.</p>
+<p><strong>What it does:</strong> Creates a planning document in <code>.claude/</code> that tracks phases, scripts, key decisions, and next steps. At the end of each session, <code>/done</code> updates this document automatically.</p>
+<p><strong>How to use it:</strong></p>
+<pre><code>/new-plan wound healing scRNAseq annotation</code></pre>
+<p>Claude will ask whether you want a data science or general style plan, and whether to use checkboxes or a status table. It creates a <code>.md</code> file in <code>.claude/</code> and registers it in your <code>CLAUDE.md</code>.</p>
+<p><strong>Example planning document:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Wound Healing scRNAseq Annotation Plan</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Status</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Phase <span class="pp">|</span> Description <span class="pp">|</span> Status <span class="pp">|</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|-------------|--------|</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> QC and filtering <span class="pp">|</span> ✅ Done <span class="pp">|</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> Normalization and clustering <span class="pp">|</span> 🔄 In progress <span class="pp">|</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> Cell type annotation <span class="pp">|</span> ⬜ Not started <span class="pp">|</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Decisions</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2024-03-15 — Excluded sample WH_003 (482 cells, below 500 threshold)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2024-03-18 — Using log-normalize not SCTransform; CellChat requires RNA assay</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Working Notes</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Testing resolutions 0.4–0.8 for clustering. UMAP looks good at 0.5.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="audit-script" class="level3" data-number="C.1.3">
+<h3 data-number="C.1.3" class="anchored" data-anchor-id="audit-script"><span class="header-section-number">C.1.3</span> <code>/audit-script</code></h3>
+<p><strong>When to use:</strong> Before sending any script to Valerie or a collaborator for review. Also useful when you’re not sure if your analysis is correct.</p>
+<p><strong>What it does:</strong> Systematically reviews a script for bugs, analytical issues, data handling problems, style, and reproducibility gaps. Produces a structured report saved to <code>outputs/audit_reports/</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Lab policy
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>/audit-script</code> before sending any script for review. Think of it like spell-checking before sending an email — it catches problems and shows you’ve thought carefully about your work.</p>
+</div>
+</div>
+<p><strong>Three modes:</strong></p>
+<ul>
+<li><strong>Thorough</strong> — Collaborative, section-by-section. Claude walks through the script with you, asks questions, and you run code together. Best for learning or for scripts with complex analytical choices.</li>
+<li><strong>Fast</strong> — Claude reads the whole script independently and presents findings for discussion. Best for a quick pre-review before meeting with Valerie.</li>
+<li><strong>Report only</strong> — Claude audits independently and saves a report. Best for a quick quality check you’ll read on your own.</li>
+</ul>
+<p><strong>How to use it:</strong></p>
+<pre><code>/audit-script</code></pre>
+<p>Claude will ask which script to audit, which mode, and whether you have specific concerns.</p>
+<p><strong>What it checks:</strong></p>
+<ul>
+<li><strong>Correctness</strong> — bugs, wrong variable references, functions used incorrectly</li>
+<li><strong>Analytical reasoning</strong> — is the statistical test appropriate? are thresholds justified?</li>
+<li><strong>Data handling</strong> — silent cell drops, wrong assay slot, unvalidated joins</li>
+<li><strong>Style</strong> — clarity, naming, comments, magic numbers</li>
+<li><strong>Reproducibility</strong> — hardcoded paths, missing <code>set.seed()</code>, undocumented inputs</li>
+</ul>
+<p><strong>Example findings:</strong></p>
+<pre><code>BUG-1: Wrong assay slot for FindMarkers
+- Lines: 47-50
+- Description: DefaultAssay is SCT but FindMarkers requires RNA counts for DESeq2 test
+- Recommendation: Add DefaultAssay(seu) &lt;- "RNA" before FindMarkers()
+
+WARNING-1: Missing set.seed() before RunUMAP
+- Lines: 62
+- Description: UMAP is stochastic — results will differ between runs
+- Recommendation: Add set.seed(42) before RunUMAP()</code></pre>
+<hr>
+</section>
+<section id="learn-code" class="level3" data-number="C.1.4">
+<h3 data-number="C.1.4" class="anchored" data-anchor-id="learn-code"><span class="header-section-number">C.1.4</span> <code>/learn-code</code></h3>
+<p><strong>When to use:</strong> When you want to understand a script — one someone else wrote, one from a paper, or one you wrote a while ago and have forgotten.</p>
+<p><strong>What it does:</strong> Walks through a script interactively, section by section, covering what the code does mechanically, why it’s organized that way, and what analytical choices are embedded in it. Generates study notes at the end.</p>
+<p><strong>Three focus modes:</strong></p>
+<ul>
+<li><strong>Balanced</strong> (default) — equal attention to mechanics and analytical reasoning</li>
+<li><strong>Focus on mechanics</strong> — more time on syntax and functions; good for building coding fluency</li>
+<li><strong>Focus on analysis</strong> — skim syntax, dive deep into analytical choices; good if you already know R</li>
+</ul>
+<p><strong>How to use it:</strong></p>
+<pre><code>/learn-code</code></pre>
+<p>Claude will ask which script to walk through and your experience level, then guide you through it section by section. You’ll be asked to run code in your console and predict what it produces before Claude explains it.</p>
+<p><strong>At the end</strong>, Claude generates study notes you can save to <code>outputs/</code> — a summary of what the script does, key concepts learned, analytical decisions made, and questions to think about.</p>
+<hr>
+</section>
+<section id="done" class="level3" data-number="C.1.5">
+<h3 data-number="C.1.5" class="anchored" data-anchor-id="done"><span class="header-section-number">C.1.5</span> <code>/done</code></h3>
+<p><strong>When to use:</strong> At the end of every working session.</p>
+<p><strong>What it does:</strong> Summarizes what you did, updates the session log in <code>CLAUDE.md</code>, updates any planning documents, consolidates scratch files, checks renv, and commits your work to git.</p>
+<p><strong>How to use it:</strong></p>
+<pre><code>/done</code></pre>
+<p>Claude will:</p>
+<ol type="1">
+<li>List what was completed this session</li>
+<li>Append a session log entry to <code>.claude/CLAUDE.md</code></li>
+<li>Update any relevant planning documents</li>
+<li>Check <code>scripts/scratch/</code> for files to consolidate</li>
+<li>Check if renv needs a snapshot</li>
+<li>Propose a git commit with the session’s files</li>
+<li>Offer to push to GitHub</li>
+</ol>
+<p><strong>Example session log entry:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2024-03-20 — Clustering and annotation</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Plans:** WOUND_HEALING_SCRNA_PLAN.md</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Work:** Tested resolutions 0.4-0.8, chose 0.5 (14 clusters). Started cell type</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  annotation using published skin markers.</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Next:** Finish annotating ambiguous clusters 7 and 11. Run FindMarkers for</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  cluster markers.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make <code>/done</code> a habit. The session log means you always know exactly where you left off, even after a long break.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="auto-loading-skills" class="level2" data-number="C.2">
+<h2 data-number="C.2" class="anchored" data-anchor-id="auto-loading-skills"><span class="header-section-number">C.2</span> Auto-Loading Skills</h2>
+<p>These skills load automatically when Claude detects a relevant task. You don’t need to invoke them manually.</p>
+<section id="horsley-lab-conventions" class="level3" data-number="C.2.1">
+<h3 data-number="C.2.1" class="anchored" data-anchor-id="horsley-lab-conventions"><span class="header-section-number">C.2.1</span> <code>horsley-lab-conventions</code></h3>
+<p><strong>When it loads:</strong> When setting up a new project or when Claude detects you’re working without a clear folder structure.</p>
+<p><strong>What it does:</strong> Tells Claude our standard project structure, script naming conventions, data rules, and output conventions. Ensures Claude always organizes projects the Horsley Lab way.</p>
+<p><strong>Key conventions it enforces:</strong></p>
+<ul>
+<li>Numbered scripts (<code>01_</code>, <code>02_</code>, etc.) run in order and reproduce all results</li>
+<li>Scratch files in <code>scripts/scratch/</code> are exploratory — consolidate before finishing</li>
+<li>Raw data in <code>data/raw/</code> is read-only — scripts never write there</li>
+<li>All outputs go in <code>outputs/</code> with descriptive names</li>
+</ul>
+<hr>
+</section>
+<section id="data-handling" class="level3" data-number="C.2.2">
+<h3 data-number="C.2.2" class="anchored" data-anchor-id="data-handling"><span class="header-section-number">C.2.2</span> <code>data-handling</code></h3>
+<p><strong>When it loads:</strong> When writing data manipulation code, analysis pipelines, or <code>.Rmd</code> scripts that process biological datasets.</p>
+<p><strong>What it does:</strong> Applies Horsley Lab best practices for data handling automatically. Ensures Claude always shows data summaries at key steps, annotates analytical decisions, and validates data to prevent silent data loss.</p>
+<p><strong>Key behaviors it triggers:</strong></p>
+<ul>
+<li>Reports cell/row counts after every filter, join, or subset</li>
+<li>Checks active assay before any Seurat operation</li>
+<li>Annotates normalization choices, QC thresholds, and clustering resolutions with rationale</li>
+<li>Flags silent data loss risks (inner joins, NA removal, factor level drops)</li>
+<li>Stops to ask before making important analytical choices</li>
+</ul>
+<p><strong>Example — with data-handling active, Claude writes:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter low-quality cells: nFeature_RNA &gt; 200 removes empty droplets,</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt; 6000 removes likely doublets; percent.mt &lt; 20 removes dying cells</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Thresholds chosen based on QC plots from 01_qc.Rmd</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>seu <span class="ot">&lt;-</span> <span class="fu">subset</span>(seu, <span class="at">subset =</span> nFeature_RNA <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">&amp;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                             nFeature_RNA <span class="sc">&lt;</span> <span class="dv">6000</span> <span class="sc">&amp;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                             percent.mt <span class="sc">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"After QC filter:"</span>, <span class="fu">ncol</span>(seu), <span class="st">"cells retained</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Instead of just:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>seu <span class="ot">&lt;-</span> <span class="fu">subset</span>(seu, <span class="at">subset =</span> nFeature_RNA <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">&amp;</span> nFeature_RNA <span class="sc">&lt;</span> <span class="dv">6000</span> <span class="sc">&amp;</span> percent.mt <span class="sc">&lt;</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="cleanup-scripts" class="level3" data-number="C.2.3">
+<h3 data-number="C.2.3" class="anchored" data-anchor-id="cleanup-scripts"><span class="header-section-number">C.2.3</span> <code>cleanup-scripts</code></h3>
+<p><strong>When it loads:</strong> When finishing a session, when <code>scripts/scratch/</code> has accumulated files, or when you say “clean up scripts” or “wrap up this session.”</p>
+<p><strong>What it does:</strong> Checks <code>scripts/scratch/</code> for working files that need consolidation into numbered <code>.Rmd</code> scripts, flags unnumbered scripts that should be numbered, and verifies script-output correspondence.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -522,11 +780,32 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This chapter is coming soon.</p>
+<p><code>/done</code> includes script cleanup automatically. If you use <code>/done</code> at the end of every session, you don’t need to invoke <code>cleanup-scripts</code> separately.</p>
 </div>
 </div>
+<hr>
+</section>
+</section>
+<section id="tips-for-getting-the-most-from-skills" class="level2" data-number="C.3">
+<h2 data-number="C.3" class="anchored" data-anchor-id="tips-for-getting-the-most-from-skills"><span class="header-section-number">C.3</span> Tips for Getting the Most from Skills</h2>
+<p><strong>Be specific when invoking slash commands.</strong> You can give context directly:</p>
+<pre><code>/new-plan — this is for the adipocyte EV scRNAseq analysis, data science style</code></pre>
+<pre><code>/audit-script — I'm worried about the DE section, we switched assays midway through</code></pre>
+<p><strong>Skills work in Claude Code only, not the chat.</strong> All slash commands require Claude Code (Positron sidebar or terminal). They won’t work in the regular claude.ai chat interface.</p>
+<p><strong>Skills update automatically.</strong> When you restart Claude Code, the latest version of the lab skills is pulled from GitHub automatically. You don’t need to reinstall.</p>
+<hr>
+</section>
+<section id="suggesting-new-skills-or-reporting-problems" class="level2" data-number="C.4">
+<h2 data-number="C.4" class="anchored" data-anchor-id="suggesting-new-skills-or-reporting-problems"><span class="header-section-number">C.4</span> Suggesting New Skills or Reporting Problems</h2>
+<p>If a skill does something wrong, doesn’t handle a situation you ran into, or you have an idea for a new skill:</p>
+<ul>
+<li>Open an issue at <a href="https://github.com/Horsleylab/horsley-lab-skills">github.com/Horsleylab/horsley-lab-skills</a></li>
+<li>Or email <a href="mailto:valerie.horsley@yale.edu">valerie.horsley@yale.edu</a></li>
+</ul>
+<p>Include which skill was involved, what happened, and what you expected.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
