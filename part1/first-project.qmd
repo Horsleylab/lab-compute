@@ -1,0 +1,114 @@
+# Your First R Project {#sec-first-project}
+
+In this chapter you'll create your first analysis project using the Horsley Lab conventions. We'll use the `/new-project` skill to set everything up automatically.
+
+## Open Positron
+
+Open Positron from your Applications folder. You'll see a layout similar to RStudio but more modern:
+
+- **Left sidebar** — file explorer, git, extensions
+- **Main area** — code editor
+- **Bottom panel** — terminal, console, output
+- **Right sidebar** — Claude Code chat panel
+
+## Create a Project Folder
+
+First, create a folder for your project. In Terminal:
+
+```bash
+mkdir ~/projects/my-first-project
+cd ~/projects/my-first-project
+```
+
+Then in Positron, go to **File → Open Folder** and open `my-first-project`.
+
+## Use /new-project to Set Up the Structure
+
+In the Claude Code sidebar in Positron, type:
+
+```
+/new-project
+```
+
+Claude will ask you a few questions:
+
+1. **Project type** — choose **Data science**
+2. **Project name** — `my-first-project` (or whatever you chose)
+3. **Brief description** — one sentence about what this project is for
+4. **Python needed?** — No for now
+5. **Layout** — Flat
+6. **Cluster?** — No for now
+7. **GitHub** — Personal account, Private
+
+Claude Code will then create the full folder structure, initialize renv, create a README, CLAUDE.md, and set up git.
+
+::: {.callout-tip}
+The `/new-project` skill sets up everything according to Horsley Lab conventions automatically. You don't need to create folders manually.
+:::
+
+## Explore the Structure
+
+After `/new-project` finishes, you should see:
+
+```
+my-first-project/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── scripts/
+│   └── scratch/
+├── outputs/
+│   ├── figures/
+│   └── tables/
+├── docs/
+├── .claude/
+│   └── CLAUDE.md
+├── renv/
+├── renv.lock
+└── README.md
+```
+
+## Create Your First Script
+
+In Positron, create a new file called `01_import.Rmd` in the `scripts/` folder.
+
+Add this content:
+
+````markdown
+---
+title: "01 — Import and Explore Data"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(tidyverse)
+```
+
+## Load Data
+
+```{r load-data}
+# We'll add data loading here
+cat("Script is working!\n")
+```
+````
+
+## Run the Script
+
+Click the **Run** button next to any code chunk, or use `Cmd+Shift+Enter` to run the current chunk. You should see "Script is working!" in the console.
+
+## Use /done to Wrap Up
+
+At the end of any working session, type in the Claude Code sidebar:
+
+```
+/done
+```
+
+This will summarize what you did, update your CLAUDE.md session log, and commit your work to git.
+
+## Next Steps
+
+You now have a working project with the correct Horsley Lab structure. In the next chapter, you'll learn how to work with Claude Code day-to-day to help you write and understand code.

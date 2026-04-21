@@ -1,0 +1,61 @@
+# Introduction {#sec-intro}
+
+Welcome to the Horsley Lab. This chapter gives you a brief overview of how we work computationally before you dive into installation and setup.
+
+## What We Analyze
+
+The Horsley Lab studies skin biology, wound healing, fibrosis, and stem cells. Our computational work centers on:
+
+- **Single-cell RNA sequencing (scRNAseq)** — profiling gene expression in individual cells to understand cell types and states in skin and wound tissue
+- **Spatial transcriptomics (Visium)** — measuring gene expression while preserving tissue spatial context
+- **Bulk RNA sequencing** — comparing gene expression across conditions or genotypes
+- **Proteomics and lipidomics** — measuring protein and lipid profiles in tissues and extracellular vesicles
+
+## Our Tools
+
+We use a standard set of tools for all computational work in the lab:
+
+| Tool | What it's for |
+|------|--------------|
+| **R** | Statistical analysis, scRNAseq, plotting |
+| **Seurat** | Single-cell RNA-seq analysis |
+| **Positron** | Our IDE (coding environment) |
+| **renv** | R package management |
+| **Git & GitHub** | Version control and collaboration |
+| **Claude Code** | AI coding assistant |
+| **Quarto** | Writing analysis documents |
+
+You don't need to know any of these yet — the next chapter will walk you through installing everything.
+
+## How We Organize Work
+
+Every analysis project in the lab follows a standard folder structure:
+
+```
+project-name/
+├── data/
+│   ├── raw/          ← original files, never modified
+│   └── processed/    ← cleaned/transformed data
+├── scripts/
+│   ├── 01_qc.Rmd          ← numbered in order of execution
+│   ├── 02_preprocessing.Rmd
+│   └── scratch/           ← exploratory files
+├── outputs/
+│   ├── figures/
+│   └── tables/
+├── docs/
+└── README.md
+```
+
+This structure makes it easy for anyone in the lab to understand and reproduce your work. You'll set this up automatically using our `/new-project` skill in @sec-first-project.
+
+## Working with AI
+
+We use Claude Code as an AI coding assistant throughout our work. It can help you write code, debug errors, understand scripts, and audit your analyses. We have custom lab skills that teach Claude our conventions — you'll install these in the next chapter.
+
+::: {.callout-note}
+## A Note on AI and Learning
+Claude Code is a powerful tool, but it's not a substitute for understanding your analysis. Use it to help you write and debug code, but always make sure you understand what the code is doing and why. The `/learn-code` skill exists specifically to help you build that understanding.
+:::
+
+Let's get started with installation.

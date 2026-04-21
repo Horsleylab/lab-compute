@@ -1,0 +1,116 @@
+# Installation {#sec-installation}
+
+This chapter walks you through setting up everything you need for computational work in the Horsley Lab. Do these steps in order.
+
+## Step 1: Find Out Your Mac Chip
+
+You need to know whether your Mac has an Apple Silicon chip (M1/M2/M3/M4) or an Intel chip, because you'll download different software versions for each.
+
+Open **Terminal** (search for it in Spotlight with `Cmd+Space`, type "Terminal") and run:
+
+```bash
+uname -m
+```
+
+- `arm64` → Apple Silicon (M1/M2/M3/M4)
+- `x86_64` → Intel
+
+Write this down — you'll need it for the next steps.
+
+## Step 2: Install R
+
+We use R for all statistical analysis and single-cell work.
+
+1. Go to [cloud.r-project.org](https://cloud.r-project.org)
+2. Click **Download R for macOS**
+3. Download the version matching your chip (Apple Silicon or Intel)
+4. Open the `.pkg` file and follow the installer
+
+To verify it worked, open Terminal and run:
+```bash
+R --version
+```
+
+You should see something like `R version 4.4.x`.
+
+## Step 3: Install Positron
+
+Positron is our coding environment (IDE). It's built for R and Python and has Claude Code built in.
+
+1. Go to [positron.posit.co](https://positron.posit.co)
+2. Download the version matching your chip
+3. Open the `.dmg` file and drag Positron to your Applications folder
+4. Open Positron from your Applications folder
+
+## Step 4: Install Quarto
+
+Quarto is what we use to write analysis documents that combine code, output, and text.
+
+1. Go to [quarto.org/docs/get-started](https://quarto.org/docs/get-started/)
+2. Download the macOS installer
+3. Run the installer
+
+## Step 5: Install Claude Code
+
+Claude Code is the AI coding assistant we use in the lab.
+
+Follow the install guide at:
+[docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)
+
+::: {.callout-important}
+You'll need an Anthropic account to use Claude Code. Ask Valerie if you need help getting access through the lab account.
+:::
+
+## Step 6: Install the Lab Skills
+
+Our lab has custom Claude Code skills that teach Claude our conventions. These must be installed in the **Mac Terminal** (not the Positron sidebar).
+
+Open Terminal, type `claude` to launch Claude Code, then run:
+
+```
+/plugin marketplace add https://github.com/Horsleylab/horsley-lab-skills
+/plugin install horsley-lab-skills
+```
+
+::: {.callout-tip}
+If `/plugin` gives you an error, make sure you typed `claude` first to launch Claude Code before running the plugin commands.
+:::
+
+To verify the skills installed, run in Terminal:
+```bash
+ls ~/.claude/skills/
+```
+
+You should see folders including `audit-script`, `learn-code`, `new-project`, and others.
+
+## Step 7: Install Git
+
+Git is how we track changes to code and collaborate with others.
+
+Check if you already have it:
+```bash
+git --version
+```
+
+If not installed, macOS will prompt you to install it automatically. Follow the prompts.
+
+Then configure it with your name and email:
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@yale.edu"
+```
+
+## Step 8: Create a GitHub Account
+
+If you don't have one, create a free account at [github.com](https://github.com). Use your Yale email address.
+
+Then ask Valerie to add you to the [Horsleylab GitHub organization](https://github.com/Horsleylab).
+
+## You're Ready
+
+Once all steps are complete, move on to @sec-first-project where you'll create your first analysis project.
+
+::: {.callout-note}
+## Getting Help
+If you get stuck at any step, ask in the lab Discord #resources channel or email [valerie.horsley@yale.edu](mailto:valerie.horsley@yale.edu).
+:::

@@ -1,0 +1,79 @@
+# Working with Claude Code {#sec-claude-code}
+
+Claude Code is an AI coding assistant built into Positron. This chapter covers how to use it effectively for day-to-day analysis work in the lab.
+
+## What Claude Code Can Do
+
+Claude Code can help you:
+
+- **Write code** — describe what you want and it writes the R or Python
+- **Debug errors** — paste an error message and it explains what went wrong and how to fix it
+- **Understand code** — use `/learn-code` to walk through any script section by section
+- **Audit scripts** — use `/audit-script` before submitting work for review
+- **Set up projects** — use `/new-project` to scaffold a new analysis
+- **Wrap up sessions** — use `/done` to commit work and update your session log
+
+## The Lab Skills
+
+When you installed the Horsley Lab skills, you gave Claude Code knowledge of our specific conventions. This means Claude already knows:
+
+- Our folder structure (`data/raw/`, `scripts/scratch/`, `outputs/figures/`)
+- Seurat-specific best practices (checking active assay, tracking cell counts, etc.)
+- How to audit an R script for common single-cell analysis mistakes
+- How to set up a new project the Horsley Lab way
+
+## How to Ask for Help Effectively
+
+The more context you give Claude Code, the better it can help. Instead of:
+
+> "My code isn't working"
+
+Try:
+
+> "I'm trying to run FindMarkers() on my Seurat object but getting an error that says 'object of type closure is not subsettable'. Here's my code: [paste code]"
+
+**Good things to include:**
+- The exact error message
+- The relevant code
+- What you were trying to do
+- What data you're working with (e.g., "a Seurat object with 8,000 cells from wound healing tissue")
+
+## The Slash Commands
+
+Type these in the Claude Code sidebar:
+
+| Command | When to use it |
+|---------|---------------|
+| `/new-project` | Starting a new analysis project |
+| `/new-plan` | Planning a multi-session analysis |
+| `/learn-code` | Understanding a script you didn't write |
+| `/audit-script` | Before sending a script for review |
+| `/done` | At the end of every working session |
+
+## A Typical Day
+
+Here's what a typical working session looks like:
+
+1. **Open your project** in Positron (File → Open Folder)
+2. **Check the session log** in `.claude/CLAUDE.md` to see where you left off
+3. **Work on your analysis** — ask Claude Code for help as needed
+4. **Run `/done`** at the end of the session to commit and update the log
+
+## Before You Send Code for Review
+
+Before sending any script to Valerie or a collaborator for review, always run:
+
+```
+/audit-script
+```
+
+This catches bugs, analytical issues, and reproducibility problems before anyone else sees them. It will produce a report in `outputs/audit_reports/`.
+
+::: {.callout-important}
+## Running /audit-script before review is lab policy
+Think of it like spell-checking before sending an email — it's a quick step that catches problems and shows you've thought carefully about your work.
+:::
+
+## Getting Help
+
+If Claude Code can't help with something, ask in the lab Discord or email [valerie.horsley@yale.edu](mailto:valerie.horsley@yale.edu).

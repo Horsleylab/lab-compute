@@ -1,0 +1,28 @@
+# Welcome {.unnumbered}
+
+This guide teaches reproducible, collaborative data analysis workflows for the Horsley Lab at Yale. Our lab studies skin biology, wound healing, fibrosis, and stem cells — and increasingly, our science depends on computational analysis of complex datasets: single-cell RNA-seq, spatial transcriptomics, bulk RNA-seq, and proteomics.
+
+This handbook will help you get set up, learn the tools, and start doing real analysis — the right way from the beginning.
+
+## Who This Guide Is For
+
+This guide is for anyone joining the Horsley Lab who will be doing computational work. You don't need prior experience with the tools we use — we'll walk you through everything. If you've used R or Python before, great. If not, that's fine too.
+
+## How to Use This Book
+
+**Start with Part 1: Quick Start.** Install the tools, set up your computer, and run your first analysis. Every new lab member should begin here.
+
+**Parts 2–4 are reference material** you'll return to as needed:
+
+- **Part 2: Core Tools** — Deeper coverage of Positron, project organization, renv, and Git/GitHub
+- **Part 3: Working with AI** — How to work effectively with Claude Code as a coding collaborator
+- **Part 4: Single-Cell Analysis** — Horsley Lab-specific workflows for scRNAseq and spatial transcriptomics
+- **Part 5: Workflows** — Practical guides for common tasks
+
+## Our Goal
+
+Every lab member should feel confident doing computational work — not just running scripts someone else wrote, but understanding and building their own analyses. The tools in this guide are chosen to make that easier: a modern IDE, environment managers that keep projects organized, version control for sharing code, and AI assistants that help you write, debug, and learn faster.
+
+Everything we do is oriented around one principle: **your analyses should be reproducible and understandable by others in the lab.**
+
+Questions? Email [valerie.horsley@yale.edu](mailto:valerie.horsley@yale.edu) or ask in the lab Discord.

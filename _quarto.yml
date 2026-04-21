@@ -1,0 +1,62 @@
+project:
+  type: book
+  output-dir: _book
+
+# GitHub Pages deployment
+execute:
+  freeze: auto
+
+book:
+  title: "Data Analysis in the Horsley Lab"
+  subtitle: "A Practical Guide to Reproducible Research"
+  author: "Valerie Horsley, in collaboration with Claude Code"
+  date: today
+  date-format: "MMMM YYYY"
+
+  chapters:
+    - index.qmd
+    - part: "Quick Start"
+      chapters:
+        - part1/intro.qmd
+        - part1/installation.qmd
+        - part1/first-project.qmd
+        - part1/claude-code.qmd
+    - part: "Core Tools"
+      chapters:
+        - part2/positron.qmd
+        - part2/project-organization.qmd
+        - part2/renv.qmd
+        - part2/git-github.qmd
+    - part: "Working with AI"
+      chapters:
+        - claude-code/ai-fluency.qmd
+        - claude-code/getting-started.qmd
+        - claude-code/working-effectively.qmd
+        - claude-code/horsley-lab-toolkit.qmd
+    - part: "Single-Cell Analysis"
+      chapters:
+        - scrna/overview.qmd
+        - scrna/seurat-workflow.qmd
+        - scrna/spatial.qmd
+        - scrna/troubleshooting.qmd
+    - part: "Workflows"
+      chapters:
+        - part3/setup-walkthrough.qmd
+        - part3/reproducibility.qmd
+        - part3/troubleshooting.qmd
+  appendices:
+    - appendices/commands.qmd
+    - appendices/r-packages.qmd
+    - appendices/lab-skills.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github
