@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -75,6 +110,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -487,8 +525,33 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-two-rules" id="toc-the-two-rules" class="nav-link active" data-scroll-target="#the-two-rules"><span class="header-section-number">6.1</span> The Two Rules</a></li>
+  <li><a href="#anatomy-of-a-lab-project" id="toc-anatomy-of-a-lab-project" class="nav-link" data-scroll-target="#anatomy-of-a-lab-project"><span class="header-section-number">6.2</span> Anatomy of a Lab Project</a></li>
+  <li><a href="#data-directory" id="toc-data-directory" class="nav-link" data-scroll-target="#data-directory"><span class="header-section-number">6.3</span> data/ — Your Inputs Are Sacred</a></li>
+  <li><a href="#scripts-directory" id="toc-scripts-directory" class="nav-link" data-scroll-target="#scripts-directory"><span class="header-section-number">6.4</span> scripts/ — Numbered Analysis Scripts</a>
+  <ul class="collapse">
+  <li><a href="#why-.rmd-files" id="toc-why-.rmd-files" class="nav-link" data-scroll-target="#why-.rmd-files"><span class="header-section-number">6.4.1</span> Why .Rmd Files?</a></li>
+  <li><a href="#why-numbers" id="toc-why-numbers" class="nav-link" data-scroll-target="#why-numbers"><span class="header-section-number">6.4.2</span> Why Numbers?</a></li>
+  </ul></li>
+  <li><a href="#outputs-directory" id="toc-outputs-directory" class="nav-link" data-scroll-target="#outputs-directory"><span class="header-section-number">6.5</span> outputs/ — Provenance Through Structure</a>
+  <ul class="collapse">
+  <li><a href="#build_info.txt" id="toc-build_info.txt" class="nav-link" data-scroll-target="#build_info.txt"><span class="header-section-number">6.5.1</span> BUILD_INFO.txt</a></li>
+  <li><a href="#setting-up-output-paths" id="toc-setting-up-output-paths" class="nav-link" data-scroll-target="#setting-up-output-paths"><span class="header-section-number">6.5.2</span> Setting Up Output Paths</a></li>
+  </ul></li>
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies"><span class="header-section-number">6.6</span> How Scripts Connect</a></li>
+  <li><a href="#scratch" id="toc-scratch" class="nav-link" data-scroll-target="#scratch"><span class="header-section-number">6.7</span> The Scratch Directory</a></li>
+  <li><a href="#project-layout" id="toc-project-layout" class="nav-link" data-scroll-target="#project-layout"><span class="header-section-number">6.8</span> Growing a Project: Flat vs.&nbsp;Sectioned</a></li>
+  <li><a href="#script-lifecycle" id="toc-script-lifecycle" class="nav-link" data-scroll-target="#script-lifecycle"><span class="header-section-number">6.9</span> Script Lifecycle</a></li>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions"><span class="header-section-number">6.10</span> Naming Conventions</a></li>
+  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control"><span class="header-section-number">6.11</span> Version Control</a></li>
+  <li><a href="#complete-example" id="toc-complete-example" class="nav-link" data-scroll-target="#complete-example"><span class="header-section-number">6.12</span> A Complete Example</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -496,7 +559,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/project-organization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Project Organization</span></h1>
+<h1 class="title"><span id="sec-project-organization" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Project Organization</span></span></h1>
 </div>
 
 
@@ -513,21 +576,373 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<p>Imagine opening a project you haven’t touched in six months. Or inheriting a colleague’s analysis when they rotate out of the lab. You need to figure out: where’s the raw data? Which script produces which figure? What’s the current version of the analysis? Is that CSV file something I downloaded, or something a script generated?</p>
+<p>A well-organized project answers these questions through its structure alone. You shouldn’t need to read code or ask someone — the folder layout and naming conventions should tell you what’s what. This chapter describes the conventions we use in the Horsley Lab to make that possible.</p>
+<p>In <a href="../part1/first-project.html" class="quarto-xref"><span>Chapter 3</span></a>, you created a project using <code>/new-project</code>. This chapter explains that structure formally and covers how it scales as projects grow.</p>
+<section id="the-two-rules" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-two-rules"><span class="header-section-number">6.1</span> The Two Rules</h2>
+<p>Every analysis project has two types of files, and the entire organizational system follows from keeping them separate:</p>
+<ol type="1">
+<li><p><strong>Inputs are sacred.</strong> Data that comes from outside the project — sequencing results, collaborator files, public datasets — goes in <code>data/</code> and is never modified by your scripts. If you need a cleaned version, your script reads the original, transforms it, and saves the result as an output.</p></li>
+<li><p><strong>Outputs are disposable.</strong> Everything your scripts produce — processed Seurat objects, figures, tables, rendered reports — goes in <code>outputs/</code> and can always be regenerated by rerunning the script that created it.</p></li>
+</ol>
+<p>This separation is the foundation. When you know that everything in <code>data/</code> came from outside and everything in <code>outputs/</code> was generated by code, you can always trace where a file came from and how to recreate it.</p>
+</section>
+<section id="anatomy-of-a-lab-project" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="anatomy-of-a-lab-project"><span class="header-section-number">6.2</span> Anatomy of a Lab Project</h2>
+<p>Here’s what a typical Horsley Lab project looks like:</p>
+<pre><code>my-project/
+├── .claude/                  # Claude Code project config
+│   └── CLAUDE.md
+├── data/                     # External inputs — scripts never write here
+│   ├── raw/                  # Original files, never modified
+│   └── processed/            # Cleaned/transformed data
+├── scripts/                  # R analysis scripts (.Rmd)
+│   └── scratch/              # Exploratory, one-off analyses
+├── outputs/                  # All generated outputs
+│   ├── figures/
+│   └── tables/
+├── docs/                     # Notes, protocols, manuscript drafts
+├── renv.lock                 # R package versions
+├── .gitignore
+└── README.md</code></pre>
+<p>The <code>/new-project</code> skill creates this entire structure for you — creating directories, initializing git, setting up renv, and generating a <code>.claude/CLAUDE.md</code> with your project’s conventions. But it’s worth understanding what each piece does.</p>
+</section>
+<section id="data-directory" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="data-directory"><span class="header-section-number">6.3</span> data/ — Your Inputs Are Sacred</h2>
+<p>The <code>data/</code> folder holds files that come from <strong>outside</strong> the project — things your scripts read but never write to:</p>
+<pre><code>data/
+├── raw/
+│   ├── counts_matrix.h5          # From the sequencing core
+│   ├── sample_metadata.xlsx      # From a collaborator
+│   └── README.md                 # Documents where each file came from
+└── processed/
+    ├── seu_filtered.rds          # Seurat object after QC
+    └── metadata_annotated.csv    # Cleaned metadata</code></pre>
+<p>The <code>raw/</code> subdirectory holds truly original files — Cell Ranger output, sequencing data from the core, metadata spreadsheets from collaborators, reference files downloaded from databases. <strong>Scripts never write to <code>data/raw/</code>.</strong></p>
+<p>The <code>processed/</code> subdirectory is for cleaned or transformed data that you trust enough to use as inputs in later scripts — for example, a filtered Seurat object that took 30 minutes to generate, or a metadata table you spent time cleaning by hand. These are still inputs, not outputs, so they live in <code>data/</code> rather than <code>outputs/</code>.</p>
+<p>Document where each file came from. A <code>data/raw/README.md</code> is the simplest approach — note the source, date received, and any relevant details for each file. Six months from now, you’ll be grateful you wrote down which version of the genome reference you used, or which email attachment that metadata came from.</p>
+</section>
+<section id="scripts-directory" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="scripts-directory"><span class="header-section-number">6.4</span> scripts/ — Numbered Analysis Scripts</h2>
+<p>All analysis scripts live in <code>scripts/</code>, numbered to show their logical flow:</p>
+<pre><code>scripts/
+├── 01_qc.Rmd
+├── 02_normalization.Rmd
+├── 03_clustering.Rmd
+├── 04_annotation.Rmd
+├── 05_de_analysis.Rmd
+└── scratch/
+    └── test_resolution_params.Rmd</code></pre>
+<section id="why-.rmd-files" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="why-.rmd-files"><span class="header-section-number">6.4.1</span> Why .Rmd Files?</h3>
+<p>In the lab, all data analysis scripts are <strong>R Markdown documents</strong> (<code>.Rmd</code>), not plain <code>.R</code> scripts. R Markdown lets you combine code, results, and narrative explanation in a single file — so your analysis documents what it does and why as it runs. When you knit an <code>.Rmd</code> file, it produces an HTML report with your figures, tables, and text woven together.</p>
+<p>Use plain <code>.R</code> files only for helper functions that you <code>source()</code> into your main scripts.</p>
+</section>
+<section id="why-numbers" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="why-numbers"><span class="header-section-number">6.4.2</span> Why Numbers?</h3>
+<p>The two-digit prefix (<code>01_</code>, <code>02_</code>, etc.) serves a simple purpose: when you look at the file explorer, scripts appear in the order of your analysis pipeline. Script 01 imports and does QC. Script 02 normalizes. Script 03 clusters. A new lab member can glance at the file list and understand the analysis flow.</p>
+<p>The numbers indicate <strong>logical order, not strict dependencies</strong>. Script 05 might read outputs from scripts 01 and 03 — the numbering just helps you understand the overall structure at a glance.</p>
+<p>When you add a new script, assign the next available number. If you archive or delete a script, <strong>don’t renumber the remaining ones</strong> — leave gaps. This avoids confusion with documentation that mentions the old numbers.</p>
+</section>
+</section>
+<section id="outputs-directory" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="outputs-directory"><span class="header-section-number">6.5</span> outputs/ — Provenance Through Structure</h2>
+<p>Here’s the convention that makes everything traceable: <strong>every script gets a matching output folder</strong>. Script <code>03_clustering.Rmd</code> writes all its outputs to <code>outputs/03_clustering/</code>:</p>
+<pre><code>outputs/
+├── figures/
+│   ├── 03_clustering/
+│   │   ├── umap_clusters.pdf
+│   │   └── cluster_sizes.pdf
+│   └── 05_de_analysis/
+│       └── volcano_plot.pdf
+├── tables/
+│   ├── 03_clustering/
+│   │   └── cluster_summary.csv
+│   └── 05_de_analysis/
+│       └── de_results.csv
+└── 03_clustering/
+    ├── seu_clustered.rds
+    └── BUILD_INFO.txt</code></pre>
+<p>This structure <strong>encodes provenance automatically</strong>. When you see a file in <code>outputs/03_clustering/</code>, you know exactly which script created it. The Seurat object, figures, and tables from each script are clearly associated with that script.</p>
+<p><strong>Output ownership</strong> is strict: a script writes only to its own output folder, never to another script’s. If script 05 needs a modified version of something script 03 produced, it reads script 03’s output and saves its own version in <code>outputs/05_de_analysis/</code>.</p>
+<section id="build_info.txt" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="build_info.txt"><span class="header-section-number">6.5.1</span> BUILD_INFO.txt</h3>
+<p>Every numbered script writes a <code>BUILD_INFO.txt</code> to its output folder as its last action:</p>
+<pre><code>script: 03_clustering.Rmd
+commit: a1b2c3d
+date: 2024-03-20 15:30:00</code></pre>
+<p>This answers a question that comes up constantly: “When was this output last regenerated, and from what version of the code?” If downstream figures look wrong, you can check the upstream folder’s <code>BUILD_INFO.txt</code> to see whether the Seurat object was generated from current code or something stale.</p>
+<p>Add this to the end of every numbered script:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write build info</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>build_info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">script =</span> <span class="st">"03_clustering.Rmd"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">commit =</span> <span class="fu">system</span>(<span class="st">"git rev-parse --short HEAD"</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">as.character</span>(<span class="fu">Sys.time</span>())</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(build_info, <span class="fu">file.path</span>(dir_out, <span class="st">"BUILD_INFO.txt"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="setting-up-output-paths" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="setting-up-output-paths"><span class="header-section-number">6.5.2</span> Setting Up Output Paths</h3>
+<p>In your setup chunk, define paths that match this structure:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This script's output folder</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>dir_out <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"03_clustering"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(dir_out, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"figures"</span>, <span class="st">"03_clustering"</span>), </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Input paths</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>path_seu <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"02_normalization"</span>, <span class="st">"seu_normalized.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then save all outputs to <code>dir_out</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save Seurat object</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(seu, <span class="fu">file.path</span>(dir_out, <span class="st">"seu_clustered.rds"</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save figures</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"figures"</span>, <span class="st">"03_clustering"</span>, <span class="st">"umap_clusters.pdf"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  p_umap, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">5</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="dependencies" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="dependencies"><span class="header-section-number">6.6</span> How Scripts Connect</h2>
+<p>Scripts read from two places: <code>data/</code> (external inputs) and <code>outputs/</code> (outputs from other scripts). Group all input reads at the top of each script, with comments distinguishing external data from other scripts’ outputs:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (from other scripts) ---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>seu <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"outputs/02_normalization/seu_normalized.rds"</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (external data) ---</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/raw/sample_metadata.csv"</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>marker_genes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/raw/published_skin_markers.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Reading the top of any script shows exactly what it depends on and where those files come from.</p>
+<p>Here’s what a typical Horsley Lab scRNAseq pipeline looks like as a dependency diagram:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    data["data/raw/*"] --&gt; s01["01_qc"]
+    s01 --&gt; s02["02_normalization"]
+    s02 --&gt; s03["03_clustering"]
+    s03 --&gt; s04["04_annotation"]
+    s04 --&gt; s05["05_de_analysis"]
+    data --&gt; s05
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="scratch" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="scratch"><span class="header-section-number">6.7</span> The Scratch Directory</h2>
+<p>Not everything you write is part of the main analysis pipeline. Sometimes you need to test a clustering resolution, try a new visualization, or run a quick sanity check. That’s what <code>scripts/scratch/</code> is for:</p>
+<pre><code>scripts/
+├── 01_qc.Rmd
+├── 02_normalization.Rmd
+├── scratch/
+│   ├── test_resolution_params.Rmd
+│   └── compare_normalization_methods.Rmd</code></pre>
+<p>Scratch scripts follow relaxed rules:</p>
+<ul>
+<li><strong>No number prefixes</strong> or <code>BUILD_INFO.txt</code> required</li>
+<li><strong>No other script depends on them</strong> — this is the critical rule. Scratch scripts can read from any <code>outputs/</code> folder, but nothing outside of <code>scratch/</code> reads from scratch outputs. This is a one-way dependency.</li>
+<li><strong>Clean them out at the end of each session</strong> — use <code>/done</code> to consolidate useful scratch code into numbered scripts</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Tip</span>When scratch becomes permanent
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This chapter is coming soon.</p>
+<p>If a scratch analysis proves valuable, promote it to a numbered script in the main directory. Use <code>/done</code> at the end of each session — it will check <code>scripts/scratch/</code> and help you consolidate useful code into the right numbered script.</p>
 </div>
 </div>
+</section>
+<section id="project-layout" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="project-layout"><span class="header-section-number">6.8</span> Growing a Project: Flat vs.&nbsp;Sectioned</h2>
+<p>The structure shown above is a <strong>flat layout</strong> — all scripts in one directory, one numbering sequence. This works well for most projects.</p>
+<p>When a project grows to include multiple distinct analyses — say, scRNAseq and spatial transcriptomics from the same experiment — a flat layout gets unwieldy. Switch to a <strong>sectioned layout</strong>:</p>
+<pre><code>project/
+├── scripts/
+│   ├── scrna/
+│   │   ├── 01_qc.Rmd
+│   │   ├── 02_normalization.Rmd
+│   │   └── 03_clustering.Rmd
+│   ├── spatial/
+│   │   ├── 01_load_visium.Rmd
+│   │   └── 02_spatial_de.Rmd
+│   ├── combined/
+│   │   └── 01_integration.Rmd
+│   └── scratch/
+├── data/
+│   ├── scrna/
+│   └── spatial/
+└── outputs/
+    ├── scrna/
+    │   ├── 01_qc/
+    │   └── 02_normalization/
+    ├── spatial/
+    │   └── 01_load_visium/
+    └── combined/
+        └── 01_integration/</code></pre>
+<p>A few things to notice:</p>
+<ul>
+<li><strong>Numbering restarts at <code>01_</code> in each section</strong> — each analytical thread has its own sequence</li>
+<li><strong>Data and outputs mirror the section structure</strong> — <code>scripts/scrna/</code> has a corresponding <code>data/scrna/</code> and <code>outputs/scrna/</code></li>
+<li><strong>Cross-section scripts</strong> like <code>combined/01_integration.Rmd</code> can read from any section’s <code>outputs/</code> folder</li>
+</ul>
+<p>Start flat. Switch to sectioned when you have more than about ten scripts or two distinct analytical threads.</p>
+</section>
+<section id="script-lifecycle" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="script-lifecycle"><span class="header-section-number">6.9</span> Script Lifecycle</h2>
+<p>Track the status of each script with a <code>status</code> field in the YAML frontmatter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"03 — Clustering"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"`r Sys.Date()`"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html_document</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>development</code></td>
+<td>In active development; outputs may change</td>
+</tr>
+<tr class="even">
+<td><code>finalized</code></td>
+<td>Outputs are publication-ready; modify only deliberately</td>
+</tr>
+<tr class="odd">
+<td><code>deprecated</code></td>
+<td>Superseded by a newer script; kept for reference</td>
+</tr>
+</tbody>
+</table>
+<p>When a script is superseded, move it to <code>scripts/old/</code> and add a note in the YAML:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Old Clustering Approach"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> deprecated</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">deprecated_by</span><span class="kw">:</span><span class="at"> 03_clustering.Rmd</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html_document</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="naming-conventions" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="naming-conventions"><span class="header-section-number">6.10</span> Naming Conventions</h2>
+<p>Good file names are lowercase, descriptive, and use underscores:</p>
+<ul>
+<li><strong>Scripts</strong>: <code>03_clustering.Rmd</code>, not <code>3-Clustering.Rmd</code> or <code>clustering final.Rmd</code></li>
+<li><strong>Output files</strong>: <code>seu_clustered.rds</code>, not <code>data.rds</code> or <code>output_final_v2.rds</code></li>
+<li><strong>Figures</strong>: <code>umap_cell_types.pdf</code>, not <code>figure1.pdf</code></li>
+</ul>
+<p>Avoid spaces (they cause problems in terminal commands), generic names (<code>results.csv</code>), and date prefixes on files — let git track versions instead.</p>
+</section>
+<section id="version-control" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="version-control"><span class="header-section-number">6.11</span> Version Control</h2>
+<p>Your <code>.gitignore</code> should include:</p>
+<pre><code># Raw data (often large)
+data/raw/
+
+# Generated outputs (reproducible from scripts)
+outputs/
+
+# R artifacts
+.Rhistory
+.RData
+renv/library/
+renv/staging/
+
+# Quarto rendering
+*_files/
+.quarto/
+
+# OS and IDE files
+.DS_Store
+.positron/
+
+# Secrets
+.env
+*.pem
+credentials.json</code></pre>
+<p>Whether to commit <code>data/raw/</code> depends on file sizes. Small files (a few MB) can be committed so the project is self-contained. Large files (Cell Ranger output, raw FASTQ) should be gitignored, with a <code>data/raw/README.md</code> documenting where to get them.</p>
+<p>See <span class="quarto-unresolved-ref">?sec-git</span> for a full introduction to version control.</p>
+</section>
+<section id="complete-example" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="complete-example"><span class="header-section-number">6.12</span> A Complete Example</h2>
+<p>Here’s a well-organized wound healing scRNAseq project:</p>
+<pre><code>wound_healing_scrna/
+├── .claude/
+│   ├── CLAUDE.md
+│   └── WOUND_HEALING_SCRNA_PLAN.md   # Planning doc
+├── data/
+│   ├── raw/
+│   │   ├── README.md                 # Documents data sources
+│   │   ├── WH_001/                   # Cell Ranger output, sample 1
+│   │   ├── WH_002/                   # Cell Ranger output, sample 2
+│   │   └── sample_metadata.csv       # Experimental design
+│   └── processed/
+│       └── seu_merged.rds            # Merged object (slow to generate)
+├── scripts/
+│   ├── 01_qc.Rmd                     # status: finalized
+│   ├── 02_normalization.Rmd          # status: finalized
+│   ├── 03_clustering.Rmd             # status: finalized
+│   ├── 04_annotation.Rmd             # status: development
+│   ├── 05_de_analysis.Rmd            # status: development
+│   ├── scratch/
+│   │   └── test_harmony_params.Rmd
+│   └── old/
+│       └── 03_clustering_v1.Rmd      # status: deprecated
+├── outputs/
+│   ├── figures/
+│   │   ├── 01_qc/
+│   │   │   ├── violin_nfeature.pdf
+│   │   │   └── violin_pct_mt.pdf
+│   │   └── 03_clustering/
+│   │       └── umap_clusters.pdf
+│   ├── tables/
+│   │   └── 05_de_analysis/
+│   │       └── de_results.csv
+│   ├── 02_normalization/
+│   │   ├── seu_normalized.rds
+│   │   └── BUILD_INFO.txt
+│   └── 03_clustering/
+│       ├── seu_clustered.rds
+│       └── BUILD_INFO.txt
+├── docs/
+│   └── cell_type_marker_notes.md
+├── renv.lock
+├── .gitignore
+└── README.md</code></pre>
+<p>From this structure, anyone can understand the project without reading a single line of code:</p>
+<ul>
+<li><strong>Where did the data come from?</strong> Check <code>data/raw/README.md</code></li>
+<li><strong>What’s the analysis pipeline?</strong> Read the numbered scripts in order</li>
+<li><strong>Which script produced <code>seu_clustered.rds</code>?</strong> It’s in <code>outputs/03_clustering/</code>, so script 03 made it</li>
+<li><strong>Is the analysis finalized?</strong> Check the <code>status</code> field — scripts 01–03 are finalized, 04–05 are still in development</li>
+<li><strong>What code version produced these outputs?</strong> Check <code>BUILD_INFO.txt</code> in each output folder</li>
+<li><strong>How do I reproduce everything?</strong> Restore packages with <code>renv::restore()</code>, then run the scripts in order</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
